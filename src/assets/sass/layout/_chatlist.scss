@@ -1,0 +1,100 @@
+@use '../utilities/variable' as variable;
+@use '../utilities/mixins' as mix;
+
+.chatlist {
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+.chat-list {
+  width: 100%;
+
+  .status {
+    position: relative;
+    bottom: -30px;
+    left: -20px;
+    margin-right: -25px;
+  }
+
+  .chat-info {
+    .name {
+      @include mix.font(18px, variable.$color3, 700);
+    }
+
+    .time {
+      @include mix.font(16px, variable.$color3);
+    }
+
+    .text {
+      @include mix.font(16px, variable.$color1);
+    }
+
+    .unread {
+      @include mix.font(12px, variable.$color2);
+      display: block;
+      width: 40px;
+      height: 20px;
+      line-height: 20px;
+      border-radius: 30px;
+      padding-left: 5px;
+      padding-right: 5px;
+      background-color: variable.$color1;
+    }
+  }
+}
+
+.translate {
+  transform: translateX(-70%);
+}
+
+.editing {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 65%;
+  height: 100%;
+  background-color: variable.$color1;
+}
+
+@media only screen and (max-width: 992px) {
+  .chat-list {
+    .status {
+      position: relative;
+      bottom: -20px;
+      left: -20px;
+      margin-right: -25px;
+    }
+
+    .photo {
+      @include mix.img(64px, 64px);
+    }
+
+    .chat-info {
+      .name {
+        @include mix.font(16px, variable.$color3, 700);
+      }
+
+      .time {
+        @include mix.font(12px, variable.$color4);
+      }
+
+      .text {
+        @include mix.font(12px, variable.$color1);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 457px) {
+  .chat-list {
+    .photo {
+      @include mix.img(50px, 50px);
+    }
+  }
+}

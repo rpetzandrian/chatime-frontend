@@ -1,0 +1,11 @@
+@use '../utilities/variable' as variable;
+.splash-bg {
+  background-color: variable.$color1;
+  width: 100vw;
+  height: 100vh;
+}
+
+.splash-logo {
+  width: 150px;
+  height: 150px;
+}

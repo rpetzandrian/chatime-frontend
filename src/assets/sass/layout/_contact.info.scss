@@ -1,0 +1,55 @@
+@use '../utilities/variable' as variable;
+@use '../utilities/mixins' as mix;
+
+.contact-info {
+  width: 500px;
+  height: 100vh;
+  overflow-x: hidden;
+  grid-template-rows: auto auto auto auto 40vh;
+  background-color: variable.$color2;
+
+  .username-title {
+    @include mix.font(24px, variable.$color1, 500);
+  }
+
+  .user-info {
+    .name {
+      @include mix.font(22px, variable.$color3, 500);
+    }
+
+    .status {
+      @include mix.font(16px, variable.$color3, 500);
+    }
+  }
+
+  h4 {
+    @include mix.font(22px, variable.$color3, 500);
+  }
+
+  .file-list {
+    @include mix.font(16px, variable.$color3, 500);
+  }
+
+  .list {
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 0px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .contact-info {
+    position: absolute;
+    right: 0;
+    width: 400px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .contact-info {
+    position: fixed;
+    width: 100vw;
+  }
+}

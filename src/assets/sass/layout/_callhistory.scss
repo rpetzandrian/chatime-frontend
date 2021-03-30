@@ -1,0 +1,44 @@
+@use '../utilities/variable' as variable;
+@use '../utilities/mixins' as mix;
+
+.call-history {
+  position: absolute;
+  z-index: 123;
+  width: 100%;
+  max-height: 100vh;
+  background-color: variable.$color2;
+  display: grid;
+  grid-template-rows: 10vh 90vh;
+
+  .title {
+    font-weight: 500;
+    font-size: 22px;
+  }
+
+  .back {
+    @include mix.img(22px, 22px);
+  }
+
+  .call {
+    img {
+      @include mix.img(82px, 82px);
+    }
+  }
+
+  .call-info {
+    img {
+      @include mix.img(18px, 18px);
+    }
+
+    .name {
+      font-weight: 500;
+      font-size: 18px;
+    }
+  }
+
+  .scroolbar-none {
+    &::-webkit-scrollbar {
+      width: 0px;
+    }
+  }
+}

@@ -1,0 +1,44 @@
+@use '../utilities/variable' as variable;
+@use '../utilities/mixins' as mix;
+
+.profile {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: variable.$color2;
+  z-index: 999;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 1px;
+  }
+
+  .back {
+    @include mix.img(22px, 22px);
+  }
+
+  .username-title {
+    @include mix.font(24px, variable.$color1, 500);
+  }
+
+  h3 {
+    @include mix.font(22px, variable.$color3, 500);
+  }
+
+  .username {
+    @include mix.font(15px, variable.$color4, 500);
+  }
+
+  h4 {
+    @include mix.font(19px, variable.$color3, 500);
+  }
+
+  .phone {
+    margin-bottom: 0px;
+  }
+
+  .setting {
+    @include mix.font(17px, variable.$color3, 400);
+  }
+}

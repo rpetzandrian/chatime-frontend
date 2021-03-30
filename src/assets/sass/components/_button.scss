@@ -1,0 +1,33 @@
+@use '../utilities/variable' as variable;
+@use '../utilities/mixins' as mix;
+
+.btn {
+  width: 360px;
+  height: 60px;
+  border-radius: 70px;
+  line-height: 40px;
+}
+
+.btn-custom-primary {
+  @include mix.font(20px, variable.$color2, 500);
+  background-color: variable.$color1;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: variable.$color2;
+    border: 1px solid variable.$color1;
+    @include mix.font(20px, variable.$color1, 500);
+  }
+}
+
+.btn-custom-secondary {
+  @include mix.font(20px, variable.$color1, 500);
+  background-color: variable.$color2;
+  border: 1px solid variable.$color1;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: variable.$color1;
+    color: variable.$color2;
+  }
+}

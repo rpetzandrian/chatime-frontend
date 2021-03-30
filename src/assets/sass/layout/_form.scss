@@ -1,0 +1,47 @@
+@use '../utilities/variable' as variable;
+
+.form-header {
+  color: variable.$color1;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 26px;
+}
+
+.back-button {
+  width: 7.5px;
+  height: 15px;
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(2);
+  }
+}
+
+.form-label {
+  font-size: 14px;
+}
+
+.form-custom {
+  border-radius: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid variable.$color3;
+  transition: 0.3s;
+
+  &:focus {
+    outline: 0;
+    box-shadow: none;
+    border-color: variable.$color1;
+  }
+}
+
+#hidden-password {
+  margin-top: -30px;
+  transition: 0.3s;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.5);
+  }
+}

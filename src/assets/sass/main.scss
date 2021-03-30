@@ -1,0 +1,43 @@
+@use './utilities/variable' as variable;
+@use './utilities/typography';
+@use './templates/splash';
+@use './templates/auth';
+@use './templates/chat';
+
+body {
+  background-color: #e5e5e5;
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+}
+
+.container-custom {
+  width: 100vw;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.mb-35 {
+  margin-bottom: 35px;
+}
+
+.mt-42 {
+  margin-top: 42px;
+}
+
+@media only screen and (min-height: 768px) {
+  .container-custom {
+    height: 100vh;
+  }
+}
+
+@media only screen and (max-height: 768px) {
+  .container-custom {
+    min-height: 100vh;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: variable.$color2;
+  }
+}

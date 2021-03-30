@@ -1,0 +1,35 @@
+@use './variable' as variable;
+@use './mixins' as mix;
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+
+.text-primary {
+  color: variable.$color3;
+}
+
+.text-secondary {
+  color: variable.$color4;
+}
+
+.text-blue {
+  color: variable.$color1;
+}
+
+.text-green {
+  color: variable.$color7;
+}
+
+.text-red {
+  color: variable.$color8;
+}
+
+.text-regular {
+  font-weight: 400;
+}
+
+.text-medium {
+  font-weight: 500;
+}
+
+.text-pb29 {
+  @include mix.font(29px, variable.$color1, 700);
+}

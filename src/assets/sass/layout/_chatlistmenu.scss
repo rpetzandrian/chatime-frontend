@@ -1,0 +1,37 @@
+@use '../utilities/variable' as variable;
+@use '../utilities/mixins' as mix;
+
+.menu {
+  position: absolute;
+  z-index: 999;
+  top: 120px;
+  right: 40px;
+  width: 260px;
+  background-color: variable.$color1;
+  border-radius: 35px 10px 35px 35px;
+
+  .menu-list {
+    color: variable.$color2;
+    font-size: 16px;
+  }
+}
+
+.menu-mobile {
+  position: fixed;
+  right: 0;
+  width: 80%;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 125;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  background-color: variable.$color2;
+
+  .name-profile {
+    @include mix.font(22px, variable.$color1, 500);
+  }
+
+  .menu-list {
+    font-size: 20px;
+  }
+}

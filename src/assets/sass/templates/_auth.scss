@@ -1,0 +1,43 @@
+@use '../utilities/variable' as variable;
+@use '../layout/form';
+@use '../components/button';
+
+.card-custom {
+  border-radius: 30px;
+  border: none;
+  width: 500px;
+  min-height: 710px;
+  color: #232323;
+}
+
+.hr-custom {
+  width: 360px;
+  line-height: 5px;
+
+  span {
+    width: 25%;
+    height: 0px;
+    border: 1px solid variable.$color4;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .card-custom {
+    border-radius: 0;
+    width: 100vw;
+    color: #232323;
+  }
+}
+
+@media only screen and (max-width: 457px) {
+  .card-custom {
+    margin-top: 42px;
+    border-radius: 0;
+    width: 100vw;
+    color: #232323;
+  }
+
+  .hr-custom {
+    width: 75vw;
+  }
+}

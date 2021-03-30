@@ -1,0 +1,40 @@
+@use '../utilities/variable' as variable;
+@use '../utilities/mixins' as mix;
+
+.open-window {
+  @include mix.open-window(60%, 50px, 30px);
+
+  img {
+    @include mix.img(30px, 30px);
+  }
+}
+
+@media only screen and (max-width: 1499.98px) {
+  .open-window {
+    @include mix.open-window(50%, 40px, 30px);
+
+    img {
+      @include mix.img(22px, 22px);
+    }
+  }
+}
+
+@media only screen and (max-width: 457px) {
+  .open-window {
+    @include mix.open-window(40%, 40px, 30px);
+
+    img {
+      @include mix.img(18px, 18px);
+    }
+  }
+}
+
+@media only screen and (max-width: 427px) {
+  .open-window {
+    @include mix.open-window(70%, 40px, 30px);
+
+    img {
+      @include mix.img(18px, 18px);
+    }
+  }
+} ;
