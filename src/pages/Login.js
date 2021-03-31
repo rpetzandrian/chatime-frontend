@@ -28,7 +28,9 @@ function Login() {
             <AuthLayouts
               formfill={formfill}
               textPrimary="Login"
+              toPrimary="/chatlist"
               textSecondary="Google"
+              toSecondary="/google"
               hr="Login with"
               title="Login"
               subTitle="Hi, Welcome back!"

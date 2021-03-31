@@ -40,7 +40,7 @@ function AuthLayouts(props) {
         {/* <!-- End Form --> */}
 
         {/* <!-- Button --> */}
-        <AuthButtonPrimary text={props.textPrimary} />
+        <AuthButtonPrimary text={props.textPrimary} to={props.toPrimary} />
 
         {props.hr && (
           <div className="hr-custom text-secondary d-flex justify-content-between align-content-center">
@@ -51,7 +51,10 @@ function AuthLayouts(props) {
         )}
 
         {props.textSecondary && (
-          <AuthButtonSecondary text={props.textSecondary} />
+          <AuthButtonSecondary
+            text={props.textSecondary}
+            to={props.toSecondary}
+          />
         )}
 
         {/* <!-- End Button --> */}

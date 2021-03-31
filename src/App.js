@@ -14,10 +14,16 @@ import {
 function App() {
   return (
     <Router>
+      {/* Splash Screen */}
       <Route path="/" exact component={Splash} />
+
+      {/* Authentication Pages */}
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route path="/forgot" component={Forgot} />
+
+      {/* Main Pages */}
+      <Route path="/chatlist" component={Chatlist} />
     </Router>
   );
 }

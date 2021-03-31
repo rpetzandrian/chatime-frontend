@@ -6,7 +6,7 @@ function AuthButtonSecondary(props) {
   return (
     <div>
       <Link
-        to="google.html"
+        to={props.to}
         className="btn btn-custom-secondary mb-35 text-center"
       >
         <img
