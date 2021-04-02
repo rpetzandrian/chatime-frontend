@@ -1,17 +1,23 @@
 import React from "react";
-import { NavbarLeft, FormSearch, SortingChatlist } from "../components";
-import { Chat } from "../components/Atoms";
+import {
+  NavbarLeft,
+  FormSearch,
+  SortingChatlist,
+  CallHistory,
+  Calling,
+} from "../components";
+import { Chatlist, Menu, MenuMobile, IncomingCalls } from "../components/Atoms";
 
 function Leftside(props) {
   return (
     <>
-      <div class="col-12 col-md-5 col-xl-4 px-3 bg-white leftside">
+      <div className="col-12 col-md-5 col-xl-4 px-3 bg-white leftside">
         {/* <!-- Navbar --> */}
-        <NavbarLeft />
+        <NavbarLeft openwindow={props.window} menuHandler={props.menuHandler} />
         {/* <!-- End Navbar --> */}
 
         {/* <!-- Search --> */}
-        <FormSearch />
+        <FormSearch windowHandler={props.windowHandler} />
         {/* <!-- End Search--> */}
 
         {/* <!-- Sorting Chatlist --> */}
@@ -19,12 +25,32 @@ function Leftside(props) {
         {/* <!-- End Sorting Chatlist --> */}
 
         {/* <!-- Chatlist --> */}
-        <section class="chatlist">
-          {props.chatlist.map((e) => {
-            return <Chat data={e} />;
+        <section className="chatlist">
+          {props.chatlist.map((e, index) => {
+            return <Chatlist key={index} data={e} />;
           })}
         </section>
         {/* <!-- End Chatlist --> */}
+
+        {/* <!-- Menu --> */}
+        {props.menu && <Menu />}
+        {/* <!-- End Menu --> */}
+
+        {/* <!-- MenuMobile --> */}
+        {props.menu && <MenuMobile menuHandler={props.menuHandler} />}
+        {/* <!-- End MenuMobile --> */}
+
+        {/* Incoming Calls */}
+        {/* <IncomingCalls device="mobile" /> */}
+        {/* End Incoming Calls */}
+
+        {/* Call History */}
+        {/* <CallHistory /> */}
+        {/* End Call History */}
+
+        {/* Call History */}
+        {/* <Calling device="mobile" /> */}
+        {/* End Call History */}
       </div>
     </>
   );

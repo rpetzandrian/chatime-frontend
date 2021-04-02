@@ -1,20 +1,20 @@
 import React from "react";
 import { searchIcon, plusIcon } from "../assets/images";
 
-function FormSearch() {
+function FormSearch(props) {
   return (
     <>
       {/* <!-- Search --> */}
       <form
-        class="d-flex align-items-center px-3 ms-1 ms-md-3 me-1 me-sm-2 me-md-4 mt-1 mb-35"
+        className="d-flex align-items-center px-3 ms-1 ms-md-3 me-1 me-sm-2 me-md-4 mt-1 mb-35"
         action=""
       >
-        <div class="input-group search-form">
-          <div class="input-group-text input-prepend">
+        <div className="input-group search-form">
+          <div className="input-group-text input-prepend">
             <img
               width="22px"
               height="22px"
-              class="ms-2"
+              className="ms-2"
               src={searchIcon}
               alt="Search icon"
             />
@@ -26,7 +26,7 @@ function FormSearch() {
             placeholder="Type your message... "
           />
         </div>
-        <div class="float-end">
+        <div className="float-end" onClick={() => props.windowHandler()}>
           <img width="22px" height="22px" src={plusIcon} alt="Add Chat" />
         </div>
       </form>

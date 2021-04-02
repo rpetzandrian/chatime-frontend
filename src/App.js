@@ -1,15 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import "./assets/css/main.css";
-import {
-  Splash,
-  Login,
-  Register,
-  Forgot,
-  Chatlist,
-  Message,
-  Call,
-} from "./pages";
+import { Splash, Login, Register, Forgot, Chat } from "./pages";
 
 function App() {
   return (
@@ -23,7 +14,8 @@ function App() {
       <Route path="/forgot" component={Forgot} />
 
       {/* Main Pages */}
-      <Route path="/chatlist" component={Chatlist} />
+      <Route path="/chat" exact component={Chat} />
+      <Route path="/chat/:id" component={Chat} />
     </Router>
   );
 }
