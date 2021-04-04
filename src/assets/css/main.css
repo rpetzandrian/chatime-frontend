@@ -626,7 +626,7 @@ nav img {
   width: 100%;
   height: 100vh;
   display: grid;
-  grid-template-rows: auto;
+  grid-template-rows: auto 80vh auto;
 }
 
 .message-header {

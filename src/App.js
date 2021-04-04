@@ -15,7 +15,7 @@ function App() {
 
       {/* Main Pages */}
       <Route path="/chat" exact component={Chat} />
-      <Route path="/chat/:id" component={Chat} />
+      <Route path="/chat/:chat_id" exact component={Chat} />
     </Router>
   );
 }

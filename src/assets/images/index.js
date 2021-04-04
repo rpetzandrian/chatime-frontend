@@ -30,6 +30,13 @@ import callSuccess from "./icons/call-success.svg";
 import chatWhite from "./icons/ChatWhite.svg";
 import toEndCall from "./icons/To end the call.svg";
 import speaker from "./icons/Speaker.svg";
+import profileMenu from "./icons/menu-profile.svg";
+import emote from "./icons/emoticon.svg";
+import rectangle from "./icons/Rectangle 68.svg";
+import mute from "./icons/Mute.svg";
+import search2 from "./icons/Search2.svg";
+import trash from "./icons/trash.svg";
+import sendIcon from "./icons/send.svg";
 import BackgroundCalls from "./icons/BackgroundCalls.svg"; // Not Permanent
 
 export {
@@ -65,5 +72,12 @@ export {
   chatWhite,
   toEndCall,
   speaker,
+  profileMenu,
+  emote,
+  rectangle,
+  mute,
+  trash,
+  search2,
+  sendIcon,
   BackgroundCalls,
 };
