@@ -12,7 +12,7 @@ function Chatlist(props) {
     <>
       <div className="position-relative ms-4">
         <Link
-          to={"/chat?p=" + props.data.name}
+          to={"/chat/" + props.data.name.toLowerCase().split(" ").join("-")}
           className="text-decoration-none chat-list row d-flex justify-content-between align-items-center"
         >
           <div className="col-2 d-flex pb-3">
