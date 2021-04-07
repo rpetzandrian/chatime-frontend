@@ -16,6 +16,10 @@ import ChatMessageMenu from "./ChatMessageMenu";
 import SendList from "./SendList";
 import StickerList from "./StickersList";
 import SendImageHeader from "./SendImageHeader";
+import MessageAddFile from "./MessageAddFile";
+import MessageAddFileMd from "./MessageAddFileMd";
+import MessageAddFileSm from "./MessageAddFileSm";
+import ChatEditing from "./ChatEditing";
 
 export {
   AuthButtonPrimary,
@@ -36,4 +40,8 @@ export {
   SendList,
   StickerList,
   SendImageHeader,
+  MessageAddFile,
+  MessageAddFileMd,
+  MessageAddFileSm,
+  ChatEditing,
 };

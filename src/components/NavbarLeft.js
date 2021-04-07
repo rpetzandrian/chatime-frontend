@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { menuButton } from "../assets/images";
 import { OpenWindow } from "./Atoms";
 
@@ -13,7 +13,7 @@ function NavbarLeft(props) {
         <div className="d-flex float-end justify-content-evenly nav-icon-mobile">
           <div
             id="menu-button"
-            className="float-end pb-2 ms-3"
+            className="float-end pb-2 ms-3 menu-button icon"
             onClick={() => props.menuHandler()}
           >
             <img src={menuButton} alt="menu button" />

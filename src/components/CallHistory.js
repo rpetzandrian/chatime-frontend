@@ -1,15 +1,18 @@
 import React from "react";
 import { CallList } from "./Atoms";
 import { backButton } from "../assets/images";
+import { useHistory } from "react-router-dom";
 
 function CallHistory(props) {
+  const history = useHistory();
+
   return (
     <>
       {/* Call-History */}
       <section className="call-history">
         <div className="row mx-3 px-3 mt-42">
-          <div className="col-2">
-            <img className="back" src={backButton} alt="back-menu" />
+          <div onClick={() => history.goBack()} className="col-2">
+            <img className="back icon" src={backButton} alt="back-menu" />
           </div>
           <div className="col-10 text-center">
             <p className="text-blue title">Call History</p>

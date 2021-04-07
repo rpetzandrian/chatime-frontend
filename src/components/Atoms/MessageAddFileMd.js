@@ -1,27 +1,57 @@
 import React from "react";
 import {
-  settings,
+  addDocument,
+  addImage,
+  addLocation,
   contacts,
-  calls,
-  bookmarks,
-  invite,
-  FAQ,
+  emote,
+  rectangle,
 } from "../../assets/images";
 
-function Menu() {
+function MessageAddFileMd() {
   return (
     <>
-      <div className="d-none d-md-block menu">
+      <div className="d-none d-md-block d-lg-none message-file message-file-md">
         <div className="row mt-3">
           <div className="col-12 d-flex justify-content-start mt-2 ps-5 link">
             <img
               className="icon"
               width="22px"
               height="22px"
-              src={settings}
-              alt="Setting"
+              src={emote}
+              alt="sticker"
             />
-            <p className="menu-list ms-4">Setting</p>
+            <p className="text-white ms-4">Emotes</p>
+          </div>
+          <div className="col-12 d-flex justify-content-start mt-2 ps-5 link">
+            <img
+              className="icon"
+              width="22px"
+              height="22px"
+              src={rectangle}
+              alt="camera"
+            />
+            <p className="text-white ms-4">Cameras</p>
+          </div>
+          <div className="col-12 d-flex justify-content-start mt-2 ps-5 link">
+            <img
+              className="icon"
+              width="22px"
+              height="22px"
+              src={addImage}
+              alt="addimage"
+            />
+            <p className="text-white ms-4">Images</p>
+          </div>
+          <div className="col-12 d-flex justify-content-start mt-2 ps-5 link">
+            <img
+              className="icon"
+              width="22px"
+              height="22px"
+              src={addDocument}
+              alt="adddocument"
+            />
+            <p className="text-white ms-4">Documents</p>
           </div>
           <div className="col-12 d-flex justify-content-start mt-2 ps-5 link">
             <img
@@ -29,49 +59,19 @@ function Menu() {
               width="22px"
               height="22px"
               src={contacts}
-              alt="Setting"
+              alt="addcontact"
             />
-            <p className="menu-list ms-4">Contact</p>
+            <p className="text-white ms-4">Contacts</p>
           </div>
           <div className="col-12 d-flex justify-content-start mt-2 ps-5 link">
             <img
               className="icon"
               width="22px"
               height="22px"
-              src={calls}
-              alt="Setting"
+              src={addLocation}
+              alt="addlocation"
             />
-            <p className="menu-list ms-4">Calls</p>
-          </div>
-          <div className="col-12 d-flex justify-content-start mt-2 ps-5 link">
-            <img
-              className="icon"
-              width="22px"
-              height="22px"
-              src={bookmarks}
-              alt="Setting"
-            />
-            <p className="menu-list ms-4">Save Messages</p>
-          </div>
-          <div className="col-12 d-flex justify-content-start mt-2 ps-5 link">
-            <img
-              className="icon"
-              width="22px"
-              height="22px"
-              src={invite}
-              alt="Setting"
-            />
-            <p className="menu-list ms-4">Invite Friends</p>
-          </div>
-          <div className="col-12 d-flex justify-content-start mt-2 ps-5 link">
-            <img
-              className="icon"
-              width="22px"
-              height="22px"
-              src={FAQ}
-              alt="Setting"
-            />
-            <p className="menu-list ms-4">Chatime FAQ</p>
+            <p className="text-white ms-4">Locations</p>
           </div>
         </div>
       </div>
@@ -79,4 +79,4 @@ function Menu() {
   );
 }
 
-export default Menu;
+export default MessageAddFileMd;

@@ -28,6 +28,7 @@ import reply from "./icons/reply.svg";
 import reject from "./icons/rejected.svg";
 import callSuccess from "./icons/call-success.svg";
 import chatWhite from "./icons/ChatWhite.svg";
+import chatBlue from "./icons/Chat.svg";
 import toEndCall from "./icons/To end the call.svg";
 import speaker from "./icons/Speaker.svg";
 import profileMenu from "./icons/menu-profile.svg";
@@ -37,6 +38,10 @@ import mute from "./icons/Mute.svg";
 import search2 from "./icons/Search2.svg";
 import trash from "./icons/trash.svg";
 import sendIcon from "./icons/send.svg";
+import addImage from "./icons/Image.svg";
+import addDocument from "./icons/Documents.svg";
+import addLocation from "./icons/Location.svg";
+import makeAllRead from "./icons/Make-all-read.svg";
 import BackgroundCalls from "./icons/BackgroundCalls.svg"; // Not Permanent
 
 export {
@@ -80,4 +85,9 @@ export {
   search2,
   sendIcon,
   BackgroundCalls,
+  addImage,
+  addDocument,
+  addLocation,
+  chatBlue,
+  makeAllRead,
 };

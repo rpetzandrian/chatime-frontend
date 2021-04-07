@@ -33,15 +33,78 @@
   color: #2675ec;
 }
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fade-from-left {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-from-right {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-from-top {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-from-bottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  70% {
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 .splash-bg {
   background-color: #2675ec;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 .splash-logo {
   width: 150px;
   height: 150px;
+  animation: spin 5s infinite;
+  animation-timing-function: linear;
 }
 
 .form-header {
@@ -258,6 +321,7 @@
   width: 60%;
   height: 50px;
   border-radius: 30px;
+  animation: fade-from-right 0.5s;
 }
 .open-window img {
   width: 30px;
@@ -308,6 +372,7 @@
   width: 260px;
   background-color: #2675ec;
   border-radius: 35px 10px 35px 35px;
+  animation: fade-from-top 0.5s;
 }
 .menu .menu-list {
   color: #ffffff;
@@ -324,6 +389,7 @@
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   background-color: #ffffff;
+  animation: fade-from-left 1s;
 }
 .menu-mobile .name-profile {
   font-weight: 500;
@@ -378,6 +444,7 @@
   background-color: #ffffff;
   display: grid;
   grid-template-rows: 10vh 90vh;
+  animation: fade-from-right 1s;
 }
 .call-history .title {
   font-weight: 500;
@@ -890,6 +957,24 @@ body {
 
 .mt-42 {
   margin-top: 42px;
+}
+
+.icon {
+  transition: 0.3s;
+}
+.icon:hover {
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+.link {
+  transition: 0.3s;
+}
+.link:hover {
+  cursor: pointer;
+}
+.link:hover img {
+  transform: scale(1.5);
 }
 
 @media only screen and (min-height: 768px) {

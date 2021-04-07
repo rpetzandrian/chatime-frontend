@@ -1,54 +1,62 @@
 import React from "react";
 import { useLocation } from "react-router";
-import { Calling, ChatMessage, SendImages } from "../components";
+import {
+  Calling,
+  ChatMessage,
+  ContactInfo,
+  MessageAddFile,
+  SendImages,
+  SendStickers,
+} from "../components";
 import { IncomingCalls, ChatMessageMenu } from "../components/Atoms";
-import SendStickers from "../components/SendStickers";
+
+const dummyMessage = [
+  {
+    sender: 2,
+    text:
+      "Hi, son, how are you doing? Today, my father and I went to buy a car, bought a cool car.",
+    images: null,
+    file: null,
+    document: null,
+    time: "Sat. 03:40",
+  },
+  {
+    sender: 1,
+    images: null,
+    file: null,
+    document: null,
+    text: "oh! Cool Send me photo",
+    time: "Sat. 03:40",
+  },
+  {
+    sender: 2,
+    images: null,
+    file: null,
+    document: null,
+    text: "Ok😉",
+    time: "Sat. 03:40",
+  },
+  {
+    sender: 2,
+    images: "ada",
+    file: null,
+    document: null,
+    text: "Will we arrive tomorrow?",
+    time: "Sat. 03:40",
+  },
+  {
+    sender: 1,
+    images: "ada",
+    file: null,
+    document: null,
+    text: "Nice",
+    time: "Sat. 03:40",
+  },
+];
 
 function Rightside(props) {
   const url = useLocation();
-  const dummyMessage = [
-    {
-      sender: 2,
-      text:
-        "Hi, son, how are you doing? Today, my father and I went to buy a car, bought a cool car.",
-      images: null,
-      file: null,
-      document: null,
-      time: "Sat. 03:40",
-    },
-    {
-      sender: 1,
-      images: null,
-      file: null,
-      document: null,
-      text: "oh! Cool Send me photo",
-      time: "Sat. 03:40",
-    },
-    {
-      sender: 2,
-      images: null,
-      file: null,
-      document: null,
-      text: "Ok😉",
-      time: "Sat. 03:40",
-    },
-    {
-      sender: 2,
-      images: "ada",
-      file: null,
-      document: null,
-      text: "Will we arrive tomorrow?",
-      time: "Sat. 03:40",
-    },
-    {
-      sender: 1,
-      images: "ada",
-      file: null,
-      document: null,
-      text: "Nice",
-      time: "Sat. 03:40",
-    },
-  ];
+  console.log(url.pathname.split("/"));
 
   return (
     <>
@@ -56,7 +64,7 @@ function Rightside(props) {
         className={
           (url.pathname === "/chat" &&
             "d-none d-md-block overflow-hidden col-md-7 col-xl-8 rightside") ||
-          "col-12 overflow-hidden col-md-7 col-xl-8 rightside"
+          "col-12 d-flex overflow-hidden col-md-7 col-xl-8 rightside"
         }
       >
         {(url.pathname === "/chat" && (
@@ -67,17 +75,22 @@ function Rightside(props) {
           </div>
         )) || <ChatMessage message={dummyMessage} />}
 
+        {/* Contacts Info */}
+        {url.pathname.split("/")[3] === "contact-info" && <ContactInfo />}
+
         {/* <ChatMessageMenu /> */}
+
         {/* <SendStickers /> */}
         {/* <SendImages /> */}
 
         {/* Incoming Calls */}
         {/* <IncomingCalls device="desktop" /> */}
-        {/* End Incoming Calls */}
 
         {/* Call History */}
         {/* <Calling device="desktop" /> */}
-        {/* End Call History */}
+
+        {/* Message Add File */}
+        {/* <MessageAddFile /> */}
       </div>
     </>
   );

@@ -26,8 +26,8 @@ function FormSearch(props) {
             placeholder="Type your message... "
           />
         </div>
-        <div className="float-end" onClick={() => props.windowHandler()}>
-          <img width="22px" height="22px" src={plusIcon} alt="Add Chat" />
+        <div className="float-end icon" onClick={() => props.windowHandler()}>
+          <img width="22px" height="22px" src={plusIcon} alt="open-window" />
         </div>
       </form>
       {/* <!-- End Search--> */}

@@ -15,7 +15,8 @@ function App() {
 
       {/* Main Pages */}
       <Route path="/chat" exact component={Chat} />
-      <Route path="/chat/:chat_id" exact component={Chat} />
+      <Route path="/chat/:slug" exact component={Chat} />
+      <Route path="/chat/:slug/contact-info" exact component={Chat} />
     </Router>
   );
 }

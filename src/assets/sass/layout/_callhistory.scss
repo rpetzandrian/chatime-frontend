@@ -9,6 +9,7 @@
   background-color: variable.$color2;
   display: grid;
   grid-template-rows: 10vh 90vh;
+  animation: fade-from-right 1s;
 
   .title {
     font-weight: 500;

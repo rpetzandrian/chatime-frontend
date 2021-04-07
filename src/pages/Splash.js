@@ -3,7 +3,7 @@ import { logo } from "../assets/images";
 
 function Splash() {
   return (
-    <div>
+    <>
       {/*  Start Splash Screen */}
       <main className="container-fluid">
         <div className="row splash-bg align-content-center">
@@ -11,7 +11,7 @@ function Splash() {
         </div>
       </main>
       {/* End Splash Screen */}
-    </div>
+    </>
   );
 }
 

@@ -1,5 +1,6 @@
 @use './utilities/variable' as variable;
 @use './utilities/typography';
+@use './components/animate';
 @use './templates/splash';
 @use './templates/auth';
 @use './templates/chat';
@@ -22,6 +23,27 @@ body {
 
 .mt-42 {
   margin-top: 42px;
+}
+
+.icon {
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.5);
+    cursor: pointer;
+  }
+}
+
+.link {
+  transition: 0.3s;
+
+  &:hover {
+    cursor: pointer;
+
+    img {
+      transform: scale(1.5);
+    }
+  }
 }
 
 @media only screen and (min-height: 768px) {

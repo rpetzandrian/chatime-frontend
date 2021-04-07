@@ -1,5 +1,5 @@
 import AuthLayouts from "./AuthLayouts";
-import Lefside from "./Leftside";
+import Leftside from "./Leftside";
 import Rightside from "./Rightside";
 
-export { AuthLayouts, Lefside, Rightside };
+export { AuthLayouts, Leftside, Rightside };

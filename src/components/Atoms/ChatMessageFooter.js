@@ -16,21 +16,21 @@ function ChatMessageFooter() {
           <div className="input-group-text mt-3 input-group-text-custom">
             <div className="d-none d-lg-flex justify-content-center float-end send-other">
               <img
-                className="mx-2"
+                className="mx-1 icon"
                 width="20px"
                 height="20px"
                 src={plusIcon}
                 alt=""
               />
               <img
-                className="mx-2"
+                className="mx-1 icon"
                 width="20px"
                 height="20px"
                 src={emote}
                 alt=""
               />
               <img
-                className="mx-2"
+                className="mx-1 icon"
                 width="20px"
                 height="20px"
                 src={rectangle}
@@ -42,7 +42,7 @@ function ChatMessageFooter() {
                 className="mx-2"
                 width="20px"
                 height="20px"
-                src="assets/images/Plus.svg"
+                src={plusIcon}
                 alt=""
               />
             </div>

@@ -8,6 +8,8 @@ import Calling from "./Calling";
 import ChatMessage from "./ChatMessage";
 import SendStickers from "./SendStickers";
 import SendImages from "./SendImages";
+import MessageAddFile from "./MessageAddfile";
+import ContactInfo from "./ContactInfo";
 
 export {
   AuthForm,
@@ -20,4 +22,6 @@ export {
   ChatMessage,
   SendStickers,
   SendImages,
+  MessageAddFile,
+  ContactInfo,
 };

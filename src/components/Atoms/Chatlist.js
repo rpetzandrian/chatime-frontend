@@ -1,18 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   online,
   checklistUnread,
   checklistRead,
   pinnedIcon,
 } from "../../assets/images";
+import { ChatEditing } from "./";
 
 function Chatlist(props) {
+  const url = useLocation();
   return (
     <>
       <div className="position-relative ms-4">
         <Link
-          to={"/chat/" + props.data.name.toLowerCase().split(" ").join("-")}
+          to={
+            "/chat/" +
+            props.data.name.toLowerCase().split(" ").join("-") +
+            "-" +
+            props.data.id +
+            url.search
+          }
           className="text-decoration-none chat-list row d-flex justify-content-between align-items-center"
         >
           <div className="col-2 d-flex pb-3">
@@ -76,6 +84,7 @@ function Chatlist(props) {
             </div>
           </div>
         </Link>
+        {props.edit && <ChatEditing />}
       </div>
     </>
   );

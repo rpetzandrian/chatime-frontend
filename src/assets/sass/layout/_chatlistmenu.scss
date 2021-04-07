@@ -9,6 +9,7 @@
   width: 260px;
   background-color: variable.$color1;
   border-radius: 35px 10px 35px 35px;
+  animation: fade-from-top 0.5s;
 
   .menu-list {
     color: variable.$color2;
@@ -26,6 +27,7 @@
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   background-color: variable.$color2;
+  animation: fade-from-left 1s;
 
   .name-profile {
     @include mix.font(22px, variable.$color1, 500);

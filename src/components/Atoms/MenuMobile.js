@@ -16,11 +16,17 @@ function MenuMobile(props) {
       <div className="d-block d-md-none menu-mobile">
         <div className="row justify-content-between mt-4 mx-3 px-3">
           <div className="col" onClick={() => props.menuHandler()}>
-            <img width="24px" height="24px" src={backButton} alt="Back" />
+            <img
+              className="icon"
+              width="24px"
+              height="24px"
+              src={backButton}
+              alt="Back"
+            />
           </div>
           <div className="col">
             <img
-              className="float-end"
+              className="float-end icon"
               width="24px"
               height="24px"
               src={settingsBlue}
@@ -38,7 +44,7 @@ function MenuMobile(props) {
           </div>
         </div>
         <div className="row mx-3 mt-42">
-          <div className="col-12 d-flex justify-content-start mb-35">
+          <div className="col-12 d-flex justify-content-start mb-35 link">
             <img
               width="24px"
               height="24px"
@@ -48,7 +54,7 @@ function MenuMobile(props) {
             />
             <p className="text-blue ms-1 menu-list">Contacts</p>
           </div>
-          <div className="col-12 d-flex justify-content-start mb-35">
+          <div className="col-12 d-flex justify-content-start mb-35 link">
             <img
               width="24px"
               height="24px"
@@ -58,7 +64,7 @@ function MenuMobile(props) {
             />
             <p className="text-blue ms-1 menu-list">Calls</p>
           </div>
-          <div className="col-12 d-flex justify-content-start mb-35">
+          <div className="col-12 d-flex justify-content-start mb-35 link">
             <img
               width="24px"
               height="24px"
@@ -68,7 +74,7 @@ function MenuMobile(props) {
             />
             <p className="text-blue ms-1 menu-list">Save Messages</p>
           </div>
-          <div className="col-12 d-flex justify-content-start mb-35">
+          <div className="col-12 d-flex justify-content-start mb-35 link">
             <img
               width="24px"
               height="24px"
@@ -78,7 +84,7 @@ function MenuMobile(props) {
             />
             <p className="text-blue ms-1 menu-list">Invite Friends</p>
           </div>
-          <div className="col-12 d-flex justify-content-start mb-35">
+          <div className="col-12 d-flex justify-content-start mb-35 link">
             <img
               width="24px"
               height="24px"

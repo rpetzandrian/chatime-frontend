@@ -3,6 +3,7 @@
 
 .open-window {
   @include mix.open-window(60%, 50px, 30px);
+  animation: fade-from-right 0.5s;
 
   img {
     @include mix.img(30px, 30px);
