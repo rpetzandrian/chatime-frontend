@@ -17,11 +17,14 @@ function AuthLayouts(props) {
           {props.formfill.map((e) => {
             return (
               <AuthForm
+                key={e.id}
                 label={e.label}
                 id={e.id}
                 type={e.type}
+                name={e.name}
                 placeholder={e.placeholder}
                 hide={e.hide}
+                onChange={props.onChange}
               />
             );
           })}
@@ -40,7 +43,10 @@ function AuthLayouts(props) {
         {/* <!-- End Form --> */}
 
         {/* <!-- Button --> */}
-        <AuthButtonPrimary text={props.textPrimary} to={props.toPrimary} />
+        <AuthButtonPrimary
+          text={props.textPrimary}
+          onClick={props.onClickPrimary}
+        />
 
         {props.hr && (
           <div className="hr-custom text-secondary d-flex justify-content-between align-content-center">

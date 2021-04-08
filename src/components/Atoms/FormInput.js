@@ -6,8 +6,10 @@ function FormInput(props) {
       <input
         id={props.id}
         type={props.type}
+        name={props.name}
         className="form-control form-custom"
         placeholder={props.placeholder}
+        onChange={(e) => props.onChange(e)}
       />
     </>
   );

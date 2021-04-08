@@ -56,7 +56,6 @@ const dummyMessage = [
 
 function Rightside(props) {
   const url = useLocation();
-  console.log(url.pathname.split("/"));
 
   return (
     <>

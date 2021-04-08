@@ -9,7 +9,9 @@ function AuthForm(props) {
       <FormInput
         id={props.id}
         type={props.type}
+        name={props.name}
         placeholder={props.placeholder}
+        onChange={props.onChange}
       />
       {props.hide && (
         <img

@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 
 function AuthButtonPrimary(props) {
   return (
-    <Link to={props.to} className="btn btn-custom-primary mb-35">
+    <div
+      onClick={(e) => props.onClick(e)}
+      className="btn btn-custom-primary mb-35"
+    >
       {props.text}
-    </Link>
+    </div>
   );
 }
 

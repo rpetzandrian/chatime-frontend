@@ -5,10 +5,7 @@ import { googleIcon } from "../../assets/images";
 function AuthButtonSecondary(props) {
   return (
     <div>
-      <Link
-        to={props.to}
-        className="btn btn-custom-secondary mb-35 text-center"
-      >
+      <div className="btn btn-custom-secondary mb-35 text-center">
         <img
           className="me-3"
           width="25px"
@@ -17,7 +14,7 @@ function AuthButtonSecondary(props) {
           alt="Gmail"
         />
         {props.text}
-      </Link>
+      </div>
     </div>
   );
 }
