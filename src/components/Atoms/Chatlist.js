@@ -93,7 +93,7 @@ function Chatlist(props) {
           </div>
           <div className="col-10 chat-info">
             <div className="row justify-content-between ms-4 ms-md-3">
-              <div className="col-9 d-flex">
+              <div className="col-8 d-flex">
                 <p className="name">
                   {props.data.user2_name || props.data.user2_phone}
                 </p>
@@ -108,44 +108,56 @@ function Chatlist(props) {
                   </span>
                 )}
               </div>
-              <div className="col-3 overflow-auto">
-                <p className="time">{time}</p>
+              <div className="col-4 overflow-auto">
+                <p className="float-end time">{time}</p>
               </div>
               <div className="col-9">
-                {props.data.lastsender === userId ? (
+                {props?.data?.lastsender === userId ? (
                   <p className="text">
-                    Me: {props.data.lastMessage.substr(0, 30) + "..."}
+                    Me:{" "}
+                    {props.data.lastMessage !== null
+                      ? props?.data?.lastMessage.substr(0, 30) + "..."
+                      : ""}
                   </p>
                 ) : (
                   <p className="text">
-                    {props.data.lastMessage.substr(0, 30) + "..."}
+                    {props.data.lastMessage !== null
+                      ? props?.data?.lastMessage.substr(0, 30) + "..."
+                      : ""}
                   </p>
                 )}
               </div>
               <div className="col-3">
-                {props.data.unread > 0 && props.data.lastsender !== userId && (
-                  <p className="unread text-center">{props.data.unread}</p>
-                )}
-                {props.data.lastRead === false &&
-                  props.data.lastsender === userId && (
+                {props.data.unread > 0 &&
+                  props?.data?.lastsender !== userId && (
+                    <p className="unread float-end text-center">
+                      {props.data.unread}
+                    </p>
+                  )}
+                {props?.data?.lastRead === false &&
+                  props?.data?.lastsender === userId && (
                     <img
+                      className="float-end"
                       width="20px"
                       height="14px"
                       src={checklistUnread}
                       alt="unread-checklist"
                     />
                   )}
-                {props.data.unread <= 0 && props.data.lastsender !== userId && (
-                  <img
-                    width="20px"
-                    height="14px"
-                    src={checklistRead}
-                    alt="read-checklist"
-                  />
-                )}
-                {props.data.lastRead === true &&
-                  props.data.lastsender === userId && (
+                {props.data.unread <= 0 &&
+                  props?.data?.lastsender !== userId && (
                     <img
+                      className="float-end"
+                      width="20px"
+                      height="14px"
+                      src={checklistRead}
+                      alt="read-checklist"
+                    />
+                  )}
+                {props?.data?.lastRead === true &&
+                  props?.data?.lastsender === userId && (
+                    <img
+                      className="float-end"
                       width="20px"
                       height="14px"
                       src={checklistRead}

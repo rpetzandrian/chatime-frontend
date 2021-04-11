@@ -5,6 +5,7 @@ import NavbarLeft from "./NavbarLeft";
 import SortingChatlist from "./SortingChatlist";
 import CallHistory from "./CallHistory";
 import Calling from "./Calling";
+import Contact from "./Contact";
 import ChatMessage from "./ChatMessage";
 import SendStickers from "./SendStickers";
 import SendImages from "./SendImages";
@@ -24,4 +25,5 @@ export {
   SendImages,
   MessageAddFile,
   ContactInfo,
+  Contact,
 };

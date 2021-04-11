@@ -37,6 +37,7 @@ import rectangle from "./icons/Rectangle 68.svg";
 import mute from "./icons/Mute.svg";
 import search2 from "./icons/Search2.svg";
 import trash from "./icons/trash.svg";
+import trashBlue from "./icons/trashBlue.svg";
 import sendIcon from "./icons/send.svg";
 import addImage from "./icons/Image.svg";
 import addDocument from "./icons/Documents.svg";
@@ -82,6 +83,7 @@ export {
   rectangle,
   mute,
   trash,
+  trashBlue,
   search2,
   sendIcon,
   BackgroundCalls,

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Leftside, Rightside } from "../layouts";
 
 function Chat({ userToken }) {

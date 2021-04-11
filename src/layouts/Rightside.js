@@ -23,6 +23,7 @@ function Rightside({ userToken }) {
     if (chatroom_id === null) {
       return;
     }
+
     axios
       .get(`${api.baseUrl}/messages/${userId}/${chatroom_id}`, {
         headers: {

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import {
   NavbarLeft,
   FormSearch,
   SortingChatlist,
   CallHistory,
   Calling,
+  Contact,
 } from "../components";
 import { Chatlist, Menu, MenuMobile, IncomingCalls } from "../components/Atoms";
 import axios from "axios";
@@ -14,6 +15,7 @@ import Swal from "sweetalert2";
 
 function Leftside({ userToken }) {
   const userId = localStorage.getItem("userID");
+  const history = useHistory();
   const url = useLocation();
   const sortChatlist = new URLSearchParams(useLocation().search).get("sort");
   const [chatlist, setChatlist] = useState([]);
@@ -55,41 +57,25 @@ function Leftside({ userToken }) {
       cancelButtonColor: "#ff0000",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
+      console.log(result);
       if (result.isConfirmed) {
         axios
-          .delete(
-            `${api.baseUrl}/chatrooms/${user}/${chatroom}`,
-            {},
-            {
-              headers: {
-                "user-token": `${userToken}`,
-              },
-            }
-          )
+          .delete(`${api.baseUrl}/chatrooms/${user}/${chatroom}`, {
+            headers: {
+              "user-token": `${userToken}`,
+            },
+          })
           .then((res) => {
             if (res.status === 200) {
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              history.replace("/chat");
             }
+          })
+          .catch((err) => {
+            console.log(err.response);
           });
       }
     });
-  };
-
-  const getContact = (user) => {
-    axios
-      .get(`${api.baseUrl}/contacts/${user}`, {
-        headers: {
-          "user-token": `${userToken}`,
-        },
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          setContactlist(res.data.data.friend_list);
-        }
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
   };
 
   useEffect(() => {
@@ -155,7 +141,9 @@ function Leftside({ userToken }) {
         {/* <!-- End Chatlist --> */}
 
         {/* <!-- Menu --> */}
-        {menu && <Menu get={() => getContact(userId)} />}
+        {menu &&
+          url.pathname !== "/contact" &&
+          url.pathname !== "/call-history" && <Menu />}
         {/* <!-- End Menu --> */}
 
         {/* <!-- MenuMobile --> */}
@@ -167,12 +155,14 @@ function Leftside({ userToken }) {
         {/* End Incoming Calls */}
 
         {/* Call History */}
-        {url.pathname === "/chat/call-history" && <CallHistory />}
+        {url.pathname === "/call-history" && <CallHistory />}
         {/* End Call History */}
 
         {/* Calling History */}
         {/* <Calling device="mobile" /> */}
         {/* End Calling */}
+
+        {url.pathname === "/contact" && <Contact contactlist={contactlist} />}
       </div>
     </>
   );

@@ -19,26 +19,28 @@ function ChatMessage(props) {
       <div className="chat-message">
         {props.data && <ChatMessageHeader data={props.data} />}
         <div className="message overflow-auto">
-          {props?.data?.messages?.map((e) => {
-            if (e.sender !== userId) {
-              return (
-                <MessageLeft
-                  key={e.id}
-                  message={e}
-                  user1_photo={props.data.user1_photo}
-                  user2_photo={props.data.user2_photo}
-                />
-              );
-            }
-            return (
-              <MessageRight
-                key={e.id}
-                message={e}
-                user1_photo={props.data.user1_photo}
-                user2_photo={props.data.user2_photo}
-              />
-            );
-          })}
+          {props.data.message !== null
+            ? props?.data?.messages?.map((e) => {
+                if (e.sender !== userId) {
+                  return (
+                    <MessageLeft
+                      key={e.id}
+                      message={e}
+                      user1_photo={props.data.user1_photo}
+                      user2_photo={props.data.user2_photo}
+                    />
+                  );
+                }
+                return (
+                  <MessageRight
+                    key={e.id}
+                    message={e}
+                    user1_photo={props.data.user1_photo}
+                    user2_photo={props.data.user2_photo}
+                  />
+                );
+              })
+            : ""}
           <div ref={divRef}></div>
         </div>
         <ChatMessageFooter

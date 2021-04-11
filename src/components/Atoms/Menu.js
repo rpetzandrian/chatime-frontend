@@ -27,7 +27,9 @@ function Menu(props) {
           </div>
           <div
             className="col-12 d-flex justify-content-start mt-2 ps-5 link"
-            onClick={() => props.get()}
+            onClick={() => {
+              history.push("/contact");
+            }}
           >
             <img
               className="icon"
@@ -40,7 +42,7 @@ function Menu(props) {
           </div>
           <div
             className="col-12 d-flex justify-content-start mt-2 ps-5 link"
-            onClick={() => history.push("/chat/call-history")}
+            onClick={() => history.push("/call-history")}
           >
             <img
               className="icon"

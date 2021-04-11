@@ -11,14 +11,16 @@ function CallHistory(props) {
       {/* Call-History */}
       <section className="call-history">
         <div className="row mx-3 px-3 mt-42">
-          <div onClick={() => history.goBack()} className="col-2">
+          <div onClick={() => history.push("/chat")} className="col-2">
             <img className="back icon" src={backButton} alt="back-menu" />
           </div>
           <div className="col-10 text-center">
             <p className="text-blue title">Call History</p>
           </div>
         </div>
-        <div className="row mx-3 px-3 mt-3 scroolbar-none overflow-auto">
+        <div className="row gy-0 align-items-start mx-3 px-3 mt-3 scroolbar-none overflow-auto">
+          <CallList name="Brother" time="18.02.2020 at 19:30" />
+          <CallList name="Brother" time="18.02.2020 at 19:30" />
           <CallList name="Brother" time="18.02.2020 at 19:30" />
         </div>
       </section>

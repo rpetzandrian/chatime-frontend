@@ -99,7 +99,10 @@ function App() {
           <Route path="/chat" exact>
             <Chat userToken={userToken} />
           </Route>
-          <Route path="/chat/call-history" exact>
+          <Route path="/call-history" exact>
+            <Chat userToken={userToken} />
+          </Route>
+          <Route path="/contact" exact>
             <Chat userToken={userToken} />
           </Route>
           <Route path="/chat/:slug" exact>
