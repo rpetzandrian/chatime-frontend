@@ -20,7 +20,11 @@ function MessageRight(props) {
             className="d-none d-lg-block"
             width="45px"
             height="45px"
-            src={props.message.photo || photo}
+            src={
+              props.user1_photo === null
+                ? "https://via.placeholder.com/150"
+                : `http://localhost:8000/${props.user1_photo}`
+            }
             alt="profile"
           />
         </div>
@@ -42,7 +46,11 @@ function MessageRight(props) {
               className="d-none d-lg-block invisible"
               width="45px"
               height="45px"
-              src={props.message.photo || photo}
+              src={
+                props.user1_photo === null
+                  ? "https://via.placeholder.com/150"
+                  : `http://localhost:8000/${props.user1_photo}`
+              }
               alt="sender"
             />
           </div>
@@ -61,7 +69,11 @@ function MessageRight(props) {
                 className="d-none d-lg-block"
                 width="45px"
                 height="45px"
-                src={props.message.photo || photo}
+                src={
+                  props.user1_photo === null
+                    ? "https://via.placeholder.com/150"
+                    : `http://localhost:8000/${props.user1_photo}`
+                }
                 alt="sender"
               />
             </div>

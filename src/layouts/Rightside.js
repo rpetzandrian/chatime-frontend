@@ -1,5 +1,6 @@
-import React from "react";
-import { useLocation } from "react-router";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router";
 import {
   Calling,
   ChatMessage,
@@ -9,53 +10,34 @@ import {
   SendStickers,
 } from "../components";
 import { IncomingCalls, ChatMessageMenu } from "../components/Atoms";
+import { api } from "../config/api";
 
-const dummyMessage = [
-  {
-    sender: 2,
-    text:
-      "Hi, son, how are you doing? Today, my father and I went to buy a car, bought a cool car.",
-    images: null,
-    file: null,
-    document: null,
-    time: "Sat. 03:40",
-  },
-  {
-    sender: 1,
-    images: null,
-    file: null,
-    document: null,
-    text: "oh! Cool Send me photo",
-    time: "Sat. 03:40",
-  },
-  {
-    sender: 2,
-    images: null,
-    file: null,
-    document: null,
-    text: "Ok😉",
-    time: "Sat. 03:40",
-  },
-  {
-    sender: 2,
-    images: "ada",
-    file: null,
-    document: null,
-    text: "Will we arrive tomorrow?",
-    time: "Sat. 03:40",
-  },
-  {
-    sender: 1,
-    images: "ada",
-    file: null,
-    document: null,
-    text: "Nice",
-    time: "Sat. 03:40",
-  },
-];
-
-function Rightside(props) {
+function Rightside({ userToken }) {
+  const userId = localStorage.getItem("userID");
   const url = useLocation();
+  const { slug } = useParams();
+  const chatroom_id = slug ? slug.split("-")[slug.split("-").length - 1] : null;
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    if (chatroom_id === null) {
+      return;
+    }
+    axios
+      .get(`${api.baseUrl}/messages/${userId}/${chatroom_id}`, {
+        headers: {
+          "user-token": `${userToken}`,
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          setData(res.data.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  }, [chatroom_id]);
 
   return (
     <>
@@ -72,10 +54,13 @@ function Rightside(props) {
               Please select a chat to start messaging
             </p>
           </div>
-        )) || <ChatMessage message={dummyMessage} />}
+        )) ||
+          (data !== null && (
+            <ChatMessage data={data} userToken={userToken} userId={userId} />
+          ))}
 
         {/* Contacts Info */}
-        {url.pathname.split("/")[3] === "contact-info" && <ContactInfo />}
+        {/* <ContactInfo /> */}
 
         {/* <ChatMessageMenu /> */}
 

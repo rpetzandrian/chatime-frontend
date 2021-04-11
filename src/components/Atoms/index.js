@@ -20,6 +20,7 @@ import MessageAddFile from "./MessageAddFile";
 import MessageAddFileMd from "./MessageAddFileMd";
 import MessageAddFileSm from "./MessageAddFileSm";
 import ChatEditing from "./ChatEditing";
+import ContactList from "./ContactList";
 
 export {
   AuthButtonPrimary,
@@ -44,4 +45,5 @@ export {
   MessageAddFileMd,
   MessageAddFileSm,
   ChatEditing,
+  ContactList,
 };

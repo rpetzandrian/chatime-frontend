@@ -11,7 +11,11 @@ function MessageLeft(props) {
             className="d-none d-lg-block"
             width="45px"
             height="45px"
-            src={props.message.photo || photo}
+            src={
+              props.user2_photo === null
+                ? "https://via.placeholder.com/150"
+                : `http://localhost:8000/${props.user2_photo}`
+            }
             alt="profile"
           />
           <p className="d-block d-lg-none text-blue ms-4 pb-3">
@@ -33,7 +37,11 @@ function MessageLeft(props) {
               className="d-none d-lg-block invisible"
               width="45px"
               height="45px"
-              src={props.message.photo || photo}
+              src={
+                props.user2_photo === null
+                  ? "https://via.placeholder.com/150"
+                  : `http://localhost:8000/${props.user2_photo}`
+              }
               alt="sender"
             />
             <p className="d-block d-lg-none text-blue ms-4 pb-3">
@@ -52,7 +60,11 @@ function MessageLeft(props) {
                 className="d-none d-lg-block"
                 width="45px"
                 height="45px"
-                src={props.message.photo || photo}
+                src={
+                  props.user2_photo === null
+                    ? "https://via.placeholder.com/150"
+                    : `http://localhost:8000/${props.user2_photo}`
+                }
                 alt="sender"
               />
               <p className="d-block d-lg-none text-blue ms-4 pb-3">

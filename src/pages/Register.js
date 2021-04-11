@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router";
+import Swal from "sweetalert2";
 import { api } from "../config/api";
 import { AuthLayouts } from "../layouts";
 
@@ -16,11 +17,10 @@ function Register() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const submitRegister = () => {
+  const submitRegister = ({ setUserToken, setUserId }) => {
     axios
       .post(`${api.baseUrl}/auth/register`, form)
       .then((res) => {
-        console.log(res, "aha");
         if (res.status === 201) {
           axios
             .post(`${api.baseUrl}/auth/login`, {
@@ -28,21 +28,36 @@ function Register() {
               password: form.password,
             })
             .then((res) => {
-              console.log(res.data, "ibhi");
               if (res.status === 200) {
                 localStorage.setItem("token", res.data.data.token);
+                setUserToken(res.data.data.token);
                 localStorage.setItem("userID", res.data.data.id);
+                setUserId(res.data.data.id);
                 history.push("/chat");
               }
             })
             .catch((err) => {
-              console.log(err);
+              Swal.fire({
+                position: "top",
+                icon: "error",
+                title: `${err.response.data.message}`,
+                showConfirmButton: false,
+                toast: true,
+                timer: 1500,
+              });
             });
         }
       })
       .catch((err) => {
         if (err.response.data.message === "User exist") {
-          alert("User exist");
+          Swal.fire({
+            position: "top",
+            icon: "error",
+            title: `${err.response.data.message}`,
+            showConfirmButton: false,
+            toast: true,
+            timer: 1500,
+          });
           history.push("/login");
         }
       });

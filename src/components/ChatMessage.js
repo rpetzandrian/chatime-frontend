@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   ChatMessageFooter,
   ChatMessageHeader,
@@ -7,19 +7,45 @@ import {
 } from "./Atoms";
 
 function ChatMessage(props) {
+  const userId = localStorage.getItem("userID");
+  const divRef = useRef(null);
+
+  useEffect(() => {
+    divRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [props.data]);
+
   return (
     <>
       <div className="chat-message">
-        <ChatMessageHeader />
+        {props.data && <ChatMessageHeader data={props.data} />}
         <div className="message overflow-auto">
-          {props.message.map((e, index) => {
-            if (e.sender !== 1) {
-              return <MessageLeft key={index} message={e} />;
+          {props?.data?.messages?.map((e) => {
+            if (e.sender !== userId) {
+              return (
+                <MessageLeft
+                  key={e.id}
+                  message={e}
+                  user1_photo={props.data.user1_photo}
+                  user2_photo={props.data.user2_photo}
+                />
+              );
             }
-            return <MessageRight key={index} message={e} />;
+            return (
+              <MessageRight
+                key={e.id}
+                message={e}
+                user1_photo={props.data.user1_photo}
+                user2_photo={props.data.user2_photo}
+              />
+            );
           })}
+          <div ref={divRef}></div>
         </div>
-        <ChatMessageFooter />
+        <ChatMessageFooter
+          userToken={props.userToken}
+          userId={props.data.user1}
+          chatroom_id={props.data.chatroom_id}
+        />
       </div>
     </>
   );

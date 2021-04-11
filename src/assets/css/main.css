@@ -234,6 +234,12 @@
 
 .chat-list {
   width: 100%;
+  transition: 0.5s;
+}
+.chat-list .photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 30px;
 }
 .chat-list .status {
   position: relative;
@@ -281,6 +287,7 @@
   width: 65%;
   height: 100%;
   background-color: #2675ec;
+  animation: fade-from-left 0.5s;
 }
 
 @media only screen and (max-width: 992px) {
@@ -617,7 +624,7 @@
   height: 100vh;
   max-width: 100%;
   display: grid;
-  grid-template-rows: auto auto auto minmax(40vh, auto);
+  grid-template-rows: 15vh 12vh auto minmax(40vh, 80vh);
 }
 
 .rightside {

@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import Swal from "sweetalert2";
 import { api } from "../config/api";
 import { AuthLayouts } from "../layouts";
 
-function Login() {
+function Login({ setUserToken, setUserId }) {
   const history = useHistory();
   const [form, setForm] = useState({
     email: null,
@@ -23,25 +24,37 @@ function Login() {
       form.password === null ||
       form.password === ""
     ) {
-      alert("emtpy");
+      Swal.fire({
+        position: "top",
+        icon: "error",
+        title: "Input can't be empty ",
+        showConfirmButton: false,
+        toast: true,
+        timer: 1500,
+      });
     }
     axios
       .post(`${api.baseUrl}/auth/login`, form)
       .then((res) => {
         if (res.status === 200) {
           localStorage.setItem("token", res.data.data.token);
+          setUserToken(res.data.data.token);
           localStorage.setItem("userID", res.data.data.id);
-          history.push("/chat");
+          setUserId(res.data.data.id);
+          history.replace("/chat");
         }
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: `${err.response.data.message}`,
+          showConfirmButton: false,
+          toast: true,
+          timer: 1500,
+        });
       });
   };
-
-  // useEffect(() => {
-  //   console.log(process.env.REACT_APP_API_BASE_URL);
-  // }, []);
 
   const formfill = [
     {

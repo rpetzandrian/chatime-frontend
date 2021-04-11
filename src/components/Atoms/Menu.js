@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 import {
   settings,
   contacts,
@@ -8,7 +9,8 @@ import {
   FAQ,
 } from "../../assets/images";
 
-function Menu() {
+function Menu(props) {
+  const history = useHistory();
   return (
     <>
       <div className="d-none d-md-block menu">
@@ -23,7 +25,10 @@ function Menu() {
             />
             <p className="menu-list ms-4">Setting</p>
           </div>
-          <div className="col-12 d-flex justify-content-start mt-2 ps-5 link">
+          <div
+            className="col-12 d-flex justify-content-start mt-2 ps-5 link"
+            onClick={() => props.get()}
+          >
             <img
               className="icon"
               width="22px"
@@ -33,7 +38,10 @@ function Menu() {
             />
             <p className="menu-list ms-4">Contact</p>
           </div>
-          <div className="col-12 d-flex justify-content-start mt-2 ps-5 link">
+          <div
+            className="col-12 d-flex justify-content-start mt-2 ps-5 link"
+            onClick={() => history.push("/chat/call-history")}
+          >
             <img
               className="icon"
               width="22px"

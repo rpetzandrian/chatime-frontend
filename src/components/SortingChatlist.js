@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, useHistory, useLocation } from "react-router-dom";
 
 function SortingChatlist() {
-  const url = new URLSearchParams(useLocation().search).get("chatlist");
+  const url = new URLSearchParams(useLocation().search).get("sort");
   const current = useLocation().pathname;
 
   return (
@@ -29,21 +29,21 @@ function SortingChatlist() {
           All
         </NavLink>
         <NavLink
-          to={current + "?chatlist=important"}
+          to={current + "?sort=important"}
           className="list-group-item me-3 sort-item"
           activeClassName={url === "important" ? "active" : "inactive"}
         >
           Important
         </NavLink>
         <NavLink
-          to={current + "?chatlist=unread"}
+          to={current + "?sort=unread"}
           className="list-group-item me-3 sort-item"
           activeClassName={url === "unread" ? "active" : "inactive"}
         >
           Unread
         </NavLink>
         <NavLink
-          to={current + "?chatlist=read"}
+          to={current + "?sort=read"}
           className="list-group-item me-3 sort-item"
           activeClassName={url === "read" ? "active" : "inactive"}
         >
