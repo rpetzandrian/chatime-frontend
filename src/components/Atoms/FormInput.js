@@ -9,6 +9,7 @@ function FormInput(props) {
         name={props.name}
         className="form-control form-custom"
         placeholder={props.placeholder}
+        required
         onChange={(e) => props.onChange(e)}
       />
     </>

@@ -6,7 +6,7 @@ function MessageLeft(props) {
   return (
     <>
       {props.message.images === null && (
-        <div className="d-flex justify-content-start align-items-end mx-3 mt-3">
+        <div className="d-flex justify-content-start align-items-end mx-3 mt-3 mb-2">
           <img
             className="d-none d-lg-block"
             width="45px"

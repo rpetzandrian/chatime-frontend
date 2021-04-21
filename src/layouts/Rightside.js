@@ -1,47 +1,40 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router";
 import {
   Calling,
   ChatMessage,
   ContactInfo,
+  Loading,
   MessageAddFile,
   SendImages,
   SendStickers,
 } from "../components";
 import { IncomingCalls, ChatMessageMenu } from "../components/Atoms";
 import { api } from "../config/api";
+import { getMessages } from "../redux/actions/messages";
 
-function Rightside({ userToken }) {
-  const userId = localStorage.getItem("userID");
+function Rightside() {
+  const dispatch = useDispatch();
   const url = useLocation();
   const { slug } = useParams();
   const chatroom_id = slug ? slug.split("-")[slug.split("-").length - 1] : null;
-  const [data, setData] = useState(null);
+  const { data: messages, error, loading } = useSelector((s) => s.Messages);
+  const { data: auth } = useSelector((s) => s.Auth);
 
   useEffect(() => {
     if (chatroom_id === null) {
       return;
     }
 
-    axios
-      .get(`${api.baseUrl}/messages/${userId}/${chatroom_id}`, {
-        headers: {
-          "user-token": `${userToken}`,
-        },
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          setData(res.data.data);
-        }
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
+    dispatch(getMessages(auth.id, auth.token, chatroom_id));
   }, [chatroom_id]);
 
   return (
     <>
+      {loading && <Loading />}
+
       <div
         className={
           (url.pathname === "/chat" &&
@@ -56,9 +49,7 @@ function Rightside({ userToken }) {
             </p>
           </div>
         )) ||
-          (data !== null && (
-            <ChatMessage data={data} userToken={userToken} userId={userId} />
-          ))}
+          (messages !== null && <ChatMessage data={messages} />)}
 
         {/* Contacts Info */}
         {/* <ContactInfo /> */}

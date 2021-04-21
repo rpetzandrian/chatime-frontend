@@ -6,6 +6,19 @@ function Splash() {
   const history = useHistory();
   const userToken = localStorage.getItem("token");
 
+  const load = () => {
+    setTimeout(() => {
+      if (!userToken) {
+        history.replace("/login");
+      }
+      history.replace("/chat");
+    }, 3000);
+  };
+
+  useEffect(() => {
+    load();
+  }, []);
+
   return (
     <>
       {/*  Start Splash Screen */}

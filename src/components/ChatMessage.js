@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import {
   ChatMessageFooter,
   ChatMessageHeader,
@@ -7,7 +8,7 @@ import {
 } from "./Atoms";
 
 function ChatMessage(props) {
-  const userId = localStorage.getItem("userID");
+  const { data: auth } = useSelector((s) => s.Auth);
   const divRef = useRef(null);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ function ChatMessage(props) {
         <div className="message overflow-auto">
           {props.data.message !== null
             ? props?.data?.messages?.map((e) => {
-                if (e.sender !== userId) {
+                if (e.sender !== auth.id) {
                   return (
                     <MessageLeft
                       key={e.id}

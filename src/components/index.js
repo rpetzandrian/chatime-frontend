@@ -11,6 +11,7 @@ import SendStickers from "./SendStickers";
 import SendImages from "./SendImages";
 import MessageAddFile from "./MessageAddfile";
 import ContactInfo from "./ContactInfo";
+import Loading from "./Loading";
 
 export {
   AuthForm,
@@ -26,4 +27,5 @@ export {
   MessageAddFile,
   ContactInfo,
   Contact,
+  Loading,
 };

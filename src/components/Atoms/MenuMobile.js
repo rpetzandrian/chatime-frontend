@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 import {
   backButton,
   settingsBlue,
@@ -11,6 +12,7 @@ import {
 import photo from "../../assets/images/gloria.png";
 
 function MenuMobile(props) {
+  const history = useHistory();
   return (
     <>
       <div className="d-block d-md-none menu-mobile">
@@ -51,6 +53,9 @@ function MenuMobile(props) {
               className="mx-3"
               src={contactsBlue}
               alt="Contacts"
+              onClick={() => {
+                history.push("/contact");
+              }}
             />
             <p className="text-blue ms-1 menu-list">Contacts</p>
           </div>
@@ -61,6 +66,9 @@ function MenuMobile(props) {
               className="mx-3"
               src={callsBlue}
               alt="Calls"
+              onClick={() => {
+                history.push("/call-history");
+              }}
             />
             <p className="text-blue ms-1 menu-list">Calls</p>
           </div>

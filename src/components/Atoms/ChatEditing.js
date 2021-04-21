@@ -17,7 +17,7 @@ function ChatEditing(props) {
           width="26px"
           src={makeAllRead}
           alt="make all read"
-          onClick={() => props.makeAllRead(props.user, props.chatroom_id)}
+          onClick={() => props.makeAllRead()}
         />
         <img
           className="mx-3 icon"

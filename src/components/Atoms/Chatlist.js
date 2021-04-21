@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
 import {
   online,
   checklistUnread,
@@ -7,16 +9,45 @@ import {
   pinnedIcon,
   makeAllRead,
 } from "../../assets/images";
+import {
+  deleteChatlist,
+  editChatlist,
+  saveChatlist,
+} from "../../redux/actions/chatlist";
 import { ChatEditing } from "./";
 
 function Chatlist(props) {
-  const userId = localStorage.getItem("userID");
+  const { data: auth } = useSelector((s) => s.Auth);
+  const dispatch = useDispatch();
+  const history = useHistory();
   const url = useLocation();
   const [edit, setEdit] = useState(false);
   const [time, setTime] = useState("few second ago");
   const classname = edit
     ? "text-decoration-none chat-list row d-flex justify-content-between align-items-center translate"
     : "text-decoration-none chat-list row d-flex justify-content-between align-items-center";
+
+  const saveChatroom = (user, chatroom, userToken) => {
+    dispatch(saveChatlist(user, chatroom, userToken));
+    history.push("/chat");
+  };
+
+  const deleteChatroom = (user, chatroom, userToken) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#2675ec",
+      cancelButtonColor: "#ff0000",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteChatlist(user, chatroom, userToken));
+        history.push("/chat");
+      }
+    });
+  };
 
   useEffect(() => {
     let difference =
@@ -61,14 +92,18 @@ function Chatlist(props) {
       <div className="position-relative ms-4" onDragEnd={() => setEdit(!edit)}>
         <Link
           to={
-            "/chat/" +
-            props.data.user2_name.toLowerCase().split(" ").join("-") +
-            "-" +
-            props.data.id +
-            url.search
+            props.data.user2_name
+              ? "/chat/@" +
+                props.data.user2_name.toLowerCase().split(" ").join("-") +
+                "-" +
+                props.data.chatroom_id +
+                url.search
+              : "/chat/@user-" + props.data.chatroom_id + url.search
           }
           className={classname}
-          onClick={() => props.update(props.data.user1, props.data.id)}
+          onClick={() =>
+            dispatch(editChatlist(auth.id, props.data.chatroom_id, auth.token))
+          }
         >
           <div className="col-2 d-flex pb-3">
             <img
@@ -112,30 +147,30 @@ function Chatlist(props) {
                 <p className="float-end time">{time}</p>
               </div>
               <div className="col-9">
-                {props?.data?.lastsender === userId ? (
+                {props?.data?.lastsender === auth.id ? (
                   <p className="text">
                     Me:{" "}
-                    {props.data.lastMessage !== null
-                      ? props?.data?.lastMessage.substr(0, 30) + "..."
+                    {props.data.messagetext !== null
+                      ? props?.data?.messagetext.substr(0, 30) + "..."
                       : ""}
                   </p>
                 ) : (
                   <p className="text">
-                    {props.data.lastMessage !== null
-                      ? props?.data?.lastMessage.substr(0, 30) + "..."
+                    {props.data.messagetext !== null
+                      ? props?.data?.messagetext.substr(0, 30) + "..."
                       : ""}
                   </p>
                 )}
               </div>
               <div className="col-3">
                 {props.data.unread > 0 &&
-                  props?.data?.lastsender !== userId && (
+                  props?.data?.lastsender !== auth.id && (
                     <p className="unread float-end text-center">
                       {props.data.unread}
                     </p>
                   )}
-                {props?.data?.lastRead === false &&
-                  props?.data?.lastsender === userId && (
+                {props?.data?.lastread === false &&
+                  props?.data?.lastsender === auth.id && (
                     <img
                       className="float-end"
                       width="20px"
@@ -145,7 +180,7 @@ function Chatlist(props) {
                     />
                   )}
                 {props.data.unread <= 0 &&
-                  props?.data?.lastsender !== userId && (
+                  props?.data?.lastsender !== auth.id && (
                     <img
                       className="float-end"
                       width="20px"
@@ -154,8 +189,8 @@ function Chatlist(props) {
                       alt="read-checklist"
                     />
                   )}
-                {props?.data?.lastRead === true &&
-                  props?.data?.lastsender === userId && (
+                {props?.data?.lastread === true &&
+                  props?.data?.lastsender === auth.id && (
                     <img
                       className="float-end"
                       width="20px"
@@ -172,9 +207,17 @@ function Chatlist(props) {
           <ChatEditing
             chatroom_id={props.data.id}
             user={props.data.user1}
-            makeAllRead={props.update}
-            save={props.saveChatroom}
-            delete={props.deleteChatroom}
+            makeAllRead={() =>
+              dispatch(
+                editChatlist(auth.id, props.data.chatroom_id, auth.token)
+              )
+            }
+            save={() =>
+              saveChatroom(auth.id, props.data.chatroom_id, auth.token)
+            }
+            delete={() =>
+              deleteChatroom(auth.id, props.data.chatroom_id, auth.token)
+            }
           />
         )}
       </div>

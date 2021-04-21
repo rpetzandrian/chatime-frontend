@@ -1,11 +1,15 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
+import { Register as register } from "../redux/actions/auth";
 import Swal from "sweetalert2";
 import { api } from "../config/api";
 import { AuthLayouts } from "../layouts";
 
 function Register() {
+  const { data: auth, error, loading } = useSelector((s) => s.Auth);
+  const dispatch = useDispatch();
   const history = useHistory();
   const [form, setForm] = useState({
     phone: "",
@@ -17,50 +21,51 @@ function Register() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const submitRegister = ({ setUserToken, setUserId }) => {
-    axios
-      .post(`${api.baseUrl}/auth/register`, form)
-      .then((res) => {
-        if (res.status === 201) {
-          axios
-            .post(`${api.baseUrl}/auth/login`, {
-              email: form.email,
-              password: form.password,
-            })
-            .then((res) => {
-              if (res.status === 200) {
-                localStorage.setItem("token", res.data.data.token);
-                setUserToken(res.data.data.token);
-                localStorage.setItem("userID", res.data.data.id);
-                setUserId(res.data.data.id);
-                history.push("/chat");
-              }
-            })
-            .catch((err) => {
-              Swal.fire({
-                position: "top",
-                icon: "error",
-                title: `${err.response.data.message}`,
-                showConfirmButton: false,
-                toast: true,
-                timer: 1500,
-              });
-            });
-        }
-      })
-      .catch((err) => {
-        if (err.response.data.message === "User exist") {
-          Swal.fire({
-            position: "top",
-            icon: "error",
-            title: `${err.response.data.message}`,
-            showConfirmButton: false,
-            toast: true,
-            timer: 1500,
-          });
-          history.push("/login");
-        }
-      });
+  const submitRegister = () => {
+    dispatch(register(form));
+    // axios
+    //   .post(`${api.baseUrl}/auth/register`, form)
+    //   .then((res) => {
+    //     if (res.status === 201) {
+    //       axios
+    //         .post(`${api.baseUrl}/auth/login`, {
+    //           email: form.email,
+    //           password: form.password,
+    //         })
+    //         .then((res) => {
+    //           if (res.status === 200) {
+    //             localStorage.setItem("token", res.data.data.token);
+    //             setUserToken(res.data.data.token);
+    //             localStorage.setItem("userID", res.data.data.id);
+    //             setUserId(res.data.data.id);
+    //             history.push("/chat");
+    //           }
+    //         })
+    //         .catch((err) => {
+    //           Swal.fire({
+    //             position: "top",
+    //             icon: "error",
+    //             title: `${err.response.data.message}`,
+    //             showConfirmButton: false,
+    //             toast: true,
+    //             timer: 1500,
+    //           });
+    //         });
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     if (err.response.data.message === "User exist") {
+    //       Swal.fire({
+    //         position: "top",
+    //         icon: "error",
+    //         title: `${err.response.data.message}`,
+    //         showConfirmButton: false,
+    //         toast: true,
+    //         timer: 1500,
+    //       });
+    //       history.push("/login");
+    //     }
+    //   });
   };
 
   const formfill = [

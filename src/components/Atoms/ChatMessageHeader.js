@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { backButton, profileMenu } from "../../assets/images";
-import photo from "../../assets/images/Rectangle 8-1.png";
 
 function ChatMessageHeader(props) {
   const url = useLocation();
@@ -28,7 +27,9 @@ function ChatMessageHeader(props) {
                 alt="partner profile"
               />
               <div className="chat-partner-desc pt-3 ms-4">
-                <h5 className="name-partner">{props.data.user2_name}</h5>
+                <h5 className="name-partner">
+                  {props.data.user2_name || props.data.user2_phone}
+                </h5>
                 <p className="text-blue">
                   {props.data.is_online ? "Online" : "Offline"}
                 </p>

@@ -1,16 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import { Login as login } from "../redux/actions/auth";
 import Swal from "sweetalert2";
 import { api } from "../config/api";
 import { AuthLayouts } from "../layouts";
 
-function Login({ setUserToken, setUserId }) {
+function Login() {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [form, setForm] = useState({
     email: null,
     password: null,
   });
+  const { data, error, loading } = useSelector((s) => s.Auth);
 
   const changeFormState = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -33,27 +37,28 @@ function Login({ setUserToken, setUserId }) {
         timer: 1500,
       });
     }
-    axios
-      .post(`${api.baseUrl}/auth/login`, form)
-      .then((res) => {
-        if (res.status === 200) {
-          localStorage.setItem("token", res.data.data.token);
-          setUserToken(res.data.data.token);
-          localStorage.setItem("userID", res.data.data.id);
-          setUserId(res.data.data.id);
-          history.replace("/chat");
-        }
-      })
-      .catch((err) => {
-        Swal.fire({
-          position: "top",
-          icon: "error",
-          title: `${err.response.data.message}`,
-          showConfirmButton: false,
-          toast: true,
-          timer: 1500,
-        });
-      });
+    dispatch(login(form));
+    // axios
+    //   .post(`${api.baseUrl}/auth/login`, form)
+    //   .then((res) => {
+    //     if (res.status === 200) {
+    //       localStorage.setItem("token", res.data.data.token);
+    //       setUserToken(res.data.data.token);
+    //       localStorage.setItem("userID", res.data.data.id);
+    //       setUserId(res.data.data.id);
+    //       history.push("/chat");
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     Swal.fire({
+    //       position: "top",
+    //       icon: "error",
+    //       title: `${err.response.data.message}`,
+    //       showConfirmButton: false,
+    //       toast: true,
+    //       timer: 1500,
+    //     });
+    //   });
   };
 
   const formfill = [

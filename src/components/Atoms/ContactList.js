@@ -1,9 +1,9 @@
 import React from "react";
+import { useHistory } from "react-router";
 import { chatBlue, trashBlue } from "../../assets/images";
-import photo from "../../assets/images/gloria.png";
 
-function ContactList({ data, addChatroom }) {
-  const userId = localStorage.getItem("userID");
+function ContactList({ data, addChatroom, deleteContact }) {
+  const history = useHistory();
   return (
     <>
       <div className="col-12 d-flex justify-content-between">
@@ -30,7 +30,7 @@ function ContactList({ data, addChatroom }) {
           alt="plus"
           className="mt-4 mx-3 icon"
           onClick={() =>
-            addChatroom(userId, data.friend_id, data.friend_name || data.phone)
+            addChatroom(data.friend_id, data.friend_name || data.phone, history)
           }
         />
         <img
@@ -39,6 +39,7 @@ function ContactList({ data, addChatroom }) {
           src={trashBlue}
           alt="delete"
           className="mt-4 mx-3 icon"
+          onClick={() => deleteContact(data.friend_id)}
         />
       </div>
     </>

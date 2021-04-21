@@ -7,98 +7,33 @@ import {
   CallHistory,
   Calling,
   Contact,
+  Loading,
 } from "../components";
 import { Chatlist, Menu, MenuMobile, IncomingCalls } from "../components/Atoms";
 import axios from "axios";
 import { api } from "../config/api";
 import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteChatlist, getChatlist } from "../redux/actions/chatlist";
 
 function Leftside({ userToken }) {
-  const userId = localStorage.getItem("userID");
-  const history = useHistory();
+  const dispatch = useDispatch();
   const url = useLocation();
   const sortChatlist = new URLSearchParams(useLocation().search).get("sort");
-  const [chatlist, setChatlist] = useState([]);
-  const [contactlist, setContactlist] = useState([]);
+  const { data: chatlist, error, loading } = useSelector((s) => s.Chatlist);
+  const { data: auth } = useSelector((s) => s.Auth);
   const [menu, setMenu] = useState(false);
   const [Window, setWindow] = useState(false);
 
-  const makeAllRead = (user, chatroom) => {
-    axios.patch(
-      `${api.baseUrl}/messages/${user}/${chatroom}`,
-      {},
-      {
-        headers: {
-          "user-token": `${userToken}`,
-        },
-      }
-    );
-  };
-
-  const saveChatroom = (user, chatroom) => {
-    axios.patch(
-      `${api.baseUrl}/chatrooms/${user}/${chatroom}`,
-      { is_saved: true },
-      {
-        headers: {
-          "user-token": `${userToken}`,
-        },
-      }
-    );
-  };
-
-  const deleteChatroom = (user, chatroom) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#2675ec",
-      cancelButtonColor: "#ff0000",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      console.log(result);
-      if (result.isConfirmed) {
-        axios
-          .delete(`${api.baseUrl}/chatrooms/${user}/${chatroom}`, {
-            headers: {
-              "user-token": `${userToken}`,
-            },
-          })
-          .then((res) => {
-            if (res.status === 200) {
-              Swal.fire("Deleted!", "Your file has been deleted.", "success");
-              history.replace("/chat");
-            }
-          })
-          .catch((err) => {
-            console.log(err.response);
-          });
-      }
-    });
-  };
-
   useEffect(() => {
-    axios
-      .get(`${api.baseUrl}/chatrooms/${userId}/${sortChatlist || ""}`, {
-        headers: {
-          "user-token": `${userToken}`,
-        },
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          setChatlist(res.data.data);
-        }
-      })
-      .catch((err) => {
-        if (err.response.data.message === "Chatroom not found") {
-          setChatlist(null);
-        }
-      });
+    // getChatlist();
+    dispatch(getChatlist(auth.id, sortChatlist, auth.token));
   }, [sortChatlist]);
 
   return (
     <>
+      {loading && <Loading />}
+
       <div
         className={
           (url.pathname === "/chat" &&
@@ -122,21 +57,9 @@ function Leftside({ userToken }) {
         <section className="chatlist">
           {chatlist !== null &&
             chatlist.map((e) => {
-              return (
-                <Chatlist
-                  key={e.id}
-                  data={e}
-                  update={(user, chatroom) => makeAllRead(user, chatroom)}
-                  saveChatroom={(user, chatroom) =>
-                    saveChatroom(user, chatroom)
-                  }
-                  deleteChatroom={(user, chatroom) =>
-                    deleteChatroom(user, chatroom)
-                  }
-                />
-              );
+              return <Chatlist key={e.chatroom_id} data={e} />;
             })}
-          {chatlist === null && <div>chat is empty</div>}
+          {error && <div>chat is empty</div>}
         </section>
         {/* <!-- End Chatlist --> */}
 
@@ -162,7 +85,7 @@ function Leftside({ userToken }) {
         {/* <Calling device="mobile" /> */}
         {/* End Calling */}
 
-        {url.pathname === "/contact" && <Contact contactlist={contactlist} />}
+        {url.pathname === "/contact" && <Contact />}
       </div>
     </>
   );
