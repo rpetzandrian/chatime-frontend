@@ -9,6 +9,7 @@ import {
   pinnedIcon,
   makeAllRead,
 } from "../../assets/images";
+import { api } from "../../config/api";
 import {
   deleteChatlist,
   editChatlist,
@@ -113,7 +114,7 @@ function Chatlist(props) {
               src={
                 props.data.user2_photo === null
                   ? "https://via.placeholder.com/150"
-                  : `http://localhost:8000/${props.data.user2_photo}`
+                  : `${api.imgUrl}/${props.data.user2_photo}`
               }
               alt="Photo1"
             />

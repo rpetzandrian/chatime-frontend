@@ -1,6 +1,5 @@
 import React from "react";
-import photo from "../../assets/images/gloria.png";
-import image from "../../assets/images/cars.png";
+import { api } from "../../config/api";
 
 function MessageRight(props) {
   return (
@@ -23,7 +22,7 @@ function MessageRight(props) {
             src={
               props.user1_photo === null
                 ? "https://via.placeholder.com/150"
-                : `http://localhost:8000/${props.user1_photo}`
+                : `${api.imgUrl}/${props.user1_photo}`
             }
             alt="profile"
           />
@@ -39,7 +38,7 @@ function MessageRight(props) {
             <div className="mx-3 message-block-right">
               <img
                 className="chat-image"
-                src={`http://localhost:8000/${props.message.images}`}
+                src={`${api.imgUrl}/${props.message.images}`}
                 alt="images"
               />
             </div>
@@ -53,7 +52,7 @@ function MessageRight(props) {
               src={
                 props.user1_photo === null
                   ? "https://via.placeholder.com/150"
-                  : `http://localhost:8000/${props.user1_photo}`
+                  : `${api.imgUrl}/${props.user1_photo}`
               }
               alt="sender"
             />
@@ -76,7 +75,7 @@ function MessageRight(props) {
                 src={
                   props.user1_photo === null
                     ? "https://via.placeholder.com/150"
-                    : `http://localhost:8000/${props.user1_photo}`
+                    : `${api.imgUrl}/${props.user1_photo}`
                 }
                 alt="sender"
               />

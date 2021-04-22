@@ -30,6 +30,8 @@ function Leftside({ userToken }) {
     dispatch(getChatlist(auth.id, sortChatlist, auth.token));
   }, [sortChatlist]);
 
+  console.log(api.imgUrl);
+
   return (
     <>
       {loading && <Loading />}

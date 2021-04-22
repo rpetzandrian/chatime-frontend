@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { chatBlue, trashBlue } from "../../assets/images";
+import { api } from "../../config/api";
 
 function ContactList({ data, addChatroom, deleteContact, edit }) {
   const history = useHistory();
@@ -13,7 +14,7 @@ function ContactList({ data, addChatroom, deleteContact, edit }) {
           src={
             data.photo === null
               ? "https://via.placeholder.com/150"
-              : `http://localhost:8000/${data.photo}`
+              : `${api.imgUrl}/${data.photo}`
           }
           alt="profile-img"
         />

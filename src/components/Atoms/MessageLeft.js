@@ -1,6 +1,7 @@
 import React from "react";
 import photo from "../../assets/images/Rectangle 8-1.png";
 import image from "../../assets/images/cars.png";
+import { api } from "../../config/api";
 
 function MessageLeft(props) {
   return (
@@ -14,7 +15,7 @@ function MessageLeft(props) {
             src={
               props.user2_photo === null
                 ? "https://via.placeholder.com/150"
-                : `http://localhost:8000/${props.user2_photo}`
+                : `${api.imgUrl}/${props.user2_photo}`
             }
             alt="profile"
           />
@@ -40,7 +41,7 @@ function MessageLeft(props) {
               src={
                 props.user2_photo === null
                   ? "https://via.placeholder.com/150"
-                  : `http://localhost:8000/${props.user2_photo}`
+                  : `${api.imgUrl}/${props.user2_photo}`
               }
               alt="sender"
             />
@@ -50,7 +51,7 @@ function MessageLeft(props) {
             <div className="mx-3 message-block-left">
               <img
                 className="chat-image"
-                src={`http://localhost:8000/${props.message.images}`}
+                src={`${api.imgUrl}/${props.message.images}`}
                 alt="images"
               />
             </div>
@@ -67,7 +68,7 @@ function MessageLeft(props) {
                 src={
                   props.user2_photo === null
                     ? "https://via.placeholder.com/150"
-                    : `http://localhost:8000/${props.user2_photo}`
+                    : `${api.imgUrl}/${props.user2_photo}`
                 }
                 alt="sender"
               />
