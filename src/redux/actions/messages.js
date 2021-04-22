@@ -21,6 +21,25 @@ const getMessagesError = (err) => {
   };
 };
 
+const addMessagesRequest = () => {
+  return {
+    type: "ADD_MESSAGE_REQUEST",
+  };
+};
+
+const addMessagesSuccess = () => {
+  return {
+    type: "ADD_MESSAGE_SUCCESS",
+  };
+};
+
+const addMessagesError = (err) => {
+  return {
+    type: "ADD_MESSAGE_ERROR",
+    payload: err,
+  };
+};
+
 const getMessages = (user, token, chatroom_id) => {
   return (dispatch) => {
     dispatch(getMessagesRequest());
@@ -41,4 +60,25 @@ const getMessages = (user, token, chatroom_id) => {
   };
 };
 
-export { getMessages };
+const addMessages = (user, token, message, withdata, cb) => {
+  return (dispatch) => {
+    dispatch(addMessagesRequest());
+    return axios
+      .post(`${api.baseUrl}/messages/${user}/${withdata || ""}`, message, {
+        headers: {
+          "user-token": `${token}`,
+        },
+      })
+      .then((res) => {
+        if (res.status === 201) {
+          dispatch(addMessagesSuccess());
+          cb({ ...message, text: "" });
+        }
+      })
+      .catch((err) => {
+        dispatch(addMessagesError(err.response));
+      });
+  };
+};
+
+export { getMessages, addMessages };

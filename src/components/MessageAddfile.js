@@ -1,17 +1,17 @@
 import React from "react";
 import { MessageAddFile, MessageAddFileMd, MessageAddFileSm } from "./Atoms";
 
-function MessageAddfile() {
+function MessageAddfile({ type }) {
   return (
     <>
       {/* Deskstop */}
-      <MessageAddFile />
+      <MessageAddFile type={(a) => type(a)} />
 
       {/* Md */}
-      <MessageAddFileMd />
+      <MessageAddFileMd type={type} />
 
       {/* Sm */}
-      <MessageAddFileSm />
+      <MessageAddFileSm type={type} />
     </>
   );
 }

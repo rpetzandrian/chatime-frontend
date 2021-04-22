@@ -26,6 +26,24 @@ const Messages = (state = initialState, action = {}) => {
         error: action.payload,
         loading: true,
       };
+    case "ADD_MESSAGE_REQUEST":
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case "ADD_MESSAGE_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        error: null,
+      };
+    case "ADD_MESSAGE_ERROR":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
 
     default:
       return state;

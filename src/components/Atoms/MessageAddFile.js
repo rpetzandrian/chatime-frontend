@@ -6,12 +6,15 @@ import {
   contacts,
 } from "../../assets/images";
 
-function MessageAddFile() {
+function MessageAddFile({ type }) {
   return (
     <>
       <div className="d-none d-lg-block message-file">
         <div className="row mt-3">
-          <div className="col-12 d-flex justify-content-start mt-2 ps-5 link">
+          <div
+            className="col-12 d-flex justify-content-start mt-2 ps-5 link"
+            onClick={() => type("images")}
+          >
             <img
               className="icon"
               width="22px"

@@ -12,7 +12,6 @@ import {
   SendStickers,
 } from "../components";
 import { IncomingCalls, ChatMessageMenu } from "../components/Atoms";
-import { api } from "../config/api";
 import { getMessages } from "../redux/actions/messages";
 
 function Rightside() {
@@ -20,6 +19,9 @@ function Rightside() {
   const url = useLocation();
   const { slug } = useParams();
   const chatroom_id = slug ? slug.split("-")[slug.split("-").length - 1] : null;
+  const [update, setUpdate] = useState(true);
+  const [type, setType] = useState("");
+  const [sendfile, setSendfile] = useState(false);
   const { data: messages, error, loading } = useSelector((s) => s.Messages);
   const { data: auth } = useSelector((s) => s.Auth);
 
@@ -29,7 +31,7 @@ function Rightside() {
     }
 
     dispatch(getMessages(auth.id, auth.token, chatroom_id));
-  }, [chatroom_id]);
+  }, [chatroom_id, update]);
 
   return (
     <>
@@ -42,14 +44,20 @@ function Rightside() {
           "col-12 d-flex overflow-hidden col-md-7 col-xl-8 rightside"
         }
       >
-        {(url.pathname === "/chat" && (
+        {((url.pathname === "/chat" || url.pathname === "/contact") && (
           <div className="row w-100 h-100 align-content-center">
             <p className="empty-chat text-secondary text-center">
               Please select a chat to start messaging
             </p>
           </div>
         )) ||
-          (messages !== null && <ChatMessage data={messages} />)}
+          (messages !== null && (
+            <ChatMessage
+              data={messages}
+              update={() => setUpdate(!update)}
+              sendfile={() => setSendfile(!sendfile)}
+            />
+          ))}
 
         {/* Contacts Info */}
         {/* <ContactInfo /> */}
@@ -57,7 +65,12 @@ function Rightside() {
         {/* <ChatMessageMenu /> */}
 
         {/* <SendStickers /> */}
-        {/* <SendImages /> */}
+        {type === "images" && (
+          <SendImages
+            update={() => setUpdate(!update)}
+            type={(a) => setType(a)}
+          />
+        )}
 
         {/* Incoming Calls */}
         {/* <IncomingCalls device="desktop" /> */}
@@ -66,7 +79,13 @@ function Rightside() {
         {/* <Calling device="desktop" /> */}
 
         {/* Message Add File */}
-        {/* <MessageAddFile /> */}
+        {sendfile && (
+          <MessageAddFile
+            type={(a) => {
+              setType(a);
+            }}
+          />
+        )}
       </div>
     </>
   );

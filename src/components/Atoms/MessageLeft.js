@@ -48,7 +48,11 @@ function MessageLeft(props) {
               {props.message.time}
             </p>
             <div className="mx-3 message-block-left">
-              <img src={image} alt="car" />
+              <img
+                className="chat-image"
+                src={`http://localhost:8000/${props.message.images}`}
+                alt="images"
+              />
             </div>
             <p className="d-none d-lg-block text-blue ms-4 pb-3">
               {props.message.time}

@@ -1,12 +1,16 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { emote, plusIcon, rectangle } from "../../assets/images";
 import { api } from "../../config/api";
+import { addMessages } from "../../redux/actions/messages";
 
-function ChatMessageFooter({ userToken, userId, chatroom_id }) {
+function ChatMessageFooter({ chatroom_id, update, sendfile }) {
+  const dispatch = useDispatch();
+  const { data: auth } = useSelector((s) => s.Auth);
   const [message, setMessage] = useState({
     chatroom_id: chatroom_id,
-    sender: userId,
+    sender: auth.id,
     text: "",
   });
 
@@ -17,20 +21,8 @@ function ChatMessageFooter({ userToken, userId, chatroom_id }) {
   const addNewMessage = (e) => {
     e.preventDefault();
     if (message.text !== "") {
-      axios
-        .post(`${api.baseUrl}/messages/${userId}`, message, {
-          headers: {
-            "user-token": `${userToken}`,
-          },
-        })
-        .then((res) => {
-          if (res.status === 201) {
-            setMessage({ ...message, text: "" });
-          }
-        })
-        .catch((err) => {
-          console.log(err.response);
-        });
+      dispatch(addMessages(auth.id, auth.token, message, null, setMessage));
+      update();
     }
   };
 
@@ -52,6 +44,7 @@ function ChatMessageFooter({ userToken, userId, chatroom_id }) {
             <div className="input-group-text mt-3 input-group-text-custom">
               <div className="d-none d-lg-flex justify-content-center float-end send-other">
                 <img
+                  onClick={() => sendfile()}
                   className="mx-1 icon"
                   width="20px"
                   height="20px"
@@ -73,7 +66,10 @@ function ChatMessageFooter({ userToken, userId, chatroom_id }) {
                   alt=""
                 />
               </div>
-              <div className="d-flex d-lg-none justify-content-end float-end send-other">
+              <div
+                className="d-flex d-lg-none justify-content-end float-end send-other"
+                onClick={() => sendfile()}
+              >
                 <img
                   className="mx-2"
                   width="20px"

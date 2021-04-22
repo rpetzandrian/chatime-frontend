@@ -45,9 +45,9 @@ function ChatMessage(props) {
           <div ref={divRef}></div>
         </div>
         <ChatMessageFooter
-          userToken={props.userToken}
-          userId={props.data.user1}
           chatroom_id={props.data.chatroom_id}
+          update={props.update}
+          sendfile={props.sendfile}
         />
       </div>
     </>
