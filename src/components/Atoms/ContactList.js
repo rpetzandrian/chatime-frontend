@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router";
 import { chatBlue, trashBlue } from "../../assets/images";
 
-function ContactList({ data, addChatroom, deleteContact }) {
+function ContactList({ data, addChatroom, deleteContact, edit }) {
   const history = useHistory();
   return (
     <>
@@ -41,6 +41,14 @@ function ContactList({ data, addChatroom, deleteContact }) {
           className="mt-4 mx-3 icon"
           onClick={() => deleteContact(data.friend_id)}
         />
+        <div
+          className="text-primary mt-4 mx-3 link"
+          onClick={() => edit(data.friend_id)}
+          data-bs-toggle="modal"
+          data-bs-target="#editModal"
+        >
+          <p>Edit</p>
+        </div>
       </div>
     </>
   );

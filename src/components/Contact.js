@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import Swal from "sweetalert2";
 import { Loading } from ".";
-import { backButton, contacts, inviteBlue } from "../assets/images";
+import { backButton, inviteBlue } from "../assets/images";
 import {
   addContact,
   deleteContact,
+  editContact,
   getContact,
 } from "../redux/actions/contact";
 import { addChatlist } from "../redux/actions/chatlist";
@@ -19,6 +20,10 @@ function Contact() {
   const { data: contact, error, loading } = useSelector((s) => s.Contact);
   const [formContact, setFormContact] = useState({
     phone: "",
+    friend_name: "",
+  });
+  const [updateForm, setUpdateForm] = useState({
+    friend_id: null,
     friend_name: "",
   });
   const [update, setUpdate] = useState(false);
@@ -35,38 +40,15 @@ function Contact() {
     setUpdate(!update);
   };
 
+  const updateContact = () => {
+    dispatch(
+      editContact(auth.id, auth.token, updateForm.friend_id, updateForm)
+    );
+    setUpdate(!update);
+  };
+
   const addChatrooms = (friend_id, friend_name, cb) => {
     dispatch(addChatlist(auth.id, auth.token, friend_id, friend_name, cb));
-    // axios
-    //   .post(
-    //     `${api.baseUrl}/chatrooms/${user}`,
-    //     { user2: friend_id },
-    //     {
-    //       headers: {
-    //         "user-token": `${userToken}`,
-    //       },
-    //     }
-    //   )
-    //   .then((res) => {
-    //     if (res.status === 201) {
-    //       history.push(
-    //         "/chat/" +
-    //           friend_name.toLowerCase().split(" ").join("-") +
-    //           "-" +
-    //           res.data.data.id
-    //       );
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     Swal.fire({
-    //       position: "top-start",
-    //       icon: "error",
-    //       title: `${err.response.data.message}`,
-    //       showConfirmButton: false,
-    //       toast: true,
-    //       timer: 1500,
-    //     });
-    //   });
   };
 
   const delContact = (friend_id) => {
@@ -104,6 +86,8 @@ function Contact() {
     dispatch(getContact(auth.id, auth.token));
   }, [update]);
 
+  console.log(updateForm, "update");
+
   return (
     <>
       {loading && <Loading />}
@@ -135,6 +119,12 @@ function Contact() {
                     key={index}
                     addChatroom={addChatrooms}
                     deleteContact={delContact}
+                    edit={(a) =>
+                      setUpdateForm({
+                        ...updateForm,
+                        friend_id: a,
+                      })
+                    }
                   />
                 );
               })}
@@ -197,6 +187,61 @@ function Contact() {
                 type="button"
                 className="btn btn-custom-secondary"
                 onClick={() => addNewContact()}
+                data-bs-dismiss="modal"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Modal Edit Contact */}
+      <div
+        className="modal fade z4"
+        id="editModal"
+        tabIndex={-1}
+        aria-labelledby="editModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header bg-primary">
+              <h5 className="modal-title text-white" id="editModalLabel">
+                Edit Contact
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              />
+            </div>
+            <div className="modal-body">
+              <form>
+                <div className="mb-3">
+                  <label htmlFor="exampleInputPassword1" className="form-label">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control form-custom"
+                    name="friend_name"
+                    onChange={(e) =>
+                      setUpdateForm({
+                        ...updateForm,
+                        friend_name: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+              </form>
+            </div>
+            <div className="modal-footer d-flex justify-content-center">
+              <button
+                type="button"
+                className="btn btn-custom-secondary"
+                onClick={() => updateContact()}
                 data-bs-dismiss="modal"
               >
                 Add

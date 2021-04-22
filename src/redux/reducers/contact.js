@@ -42,6 +42,10 @@ const Contact = (state = initialState, action = {}) => {
         error: "Error occur",
         loading: false,
       };
+    case "EDIT_CONTACT_REQUEST":
+      return {
+        ...state,
+      };
     case "DELETE_CONTACT_REQUEST":
       return {
         ...state,

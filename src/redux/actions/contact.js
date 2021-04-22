@@ -38,6 +38,12 @@ const addContactError = () => {
   };
 };
 
+const editContactRequest = () => {
+  return {
+    type: "EDIT_CONTACT_REQUEST",
+  };
+};
+
 const deleteContactRequest = () => {
   return {
     type: "DELETE_CONTACT_REQUEST",
@@ -94,6 +100,26 @@ const addContact = (user, token, form) => {
   };
 };
 
+const editContact = (user, token, friend, name) => {
+  return (dispatch) => {
+    dispatch(editContactRequest());
+    return axios
+      .patch(
+        `${api.baseUrl}/contacts/${user}/${friend}`,
+        {
+          ...name,
+        },
+        {
+          headers: {
+            "user-token": `${token}`,
+          },
+        }
+      )
+      .then((res) => {})
+      .catch((err) => {});
+  };
+};
+
 const deleteContact = (user, token, friend) => {
   return (dispatch) => {
     dispatch(deleteContactRequest());
@@ -114,4 +140,4 @@ const deleteContact = (user, token, friend) => {
   };
 };
 
-export { getContact, addContact, deleteContact };
+export { getContact, addContact, deleteContact, editContact };
