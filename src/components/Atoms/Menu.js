@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import {
   settings,
@@ -8,8 +9,10 @@ import {
   invite,
   FAQ,
 } from "../../assets/images";
+import { Logout } from "../../redux/actions/auth";
 
 function Menu(props) {
+  const dispatch = useDispatch();
   const history = useHistory();
   return (
     <>
@@ -87,6 +90,12 @@ function Menu(props) {
               alt="Setting"
             />
             <p className="menu-list ms-4">Chatime FAQ</p>
+          </div>
+          <div
+            className="col-12 d-flex justify-content-start mt-2 ps-5 link"
+            onClick={() => dispatch(Logout())}
+          >
+            <p className="menu-list mx-3">Logout</p>
           </div>
         </div>
       </div>
