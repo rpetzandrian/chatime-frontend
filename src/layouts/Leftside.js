@@ -8,6 +8,7 @@ import {
   Calling,
   Contact,
   Loading,
+  Setting,
 } from "../components";
 import { Chatlist, Menu, MenuMobile, IncomingCalls } from "../components/Atoms";
 import axios from "axios";
@@ -22,6 +23,7 @@ function Leftside({ userToken }) {
   const sortChatlist = new URLSearchParams(useLocation().search).get("sort");
   const { data: chatlist, error, loading } = useSelector((s) => s.Chatlist);
   const { data: auth } = useSelector((s) => s.Auth);
+  // const [keyword, setKeyword] = useState("");
   const [menu, setMenu] = useState(false);
   const [Window, setWindow] = useState(false);
 
@@ -48,7 +50,12 @@ function Leftside({ userToken }) {
         {/* <!-- End Navbar --> */}
 
         {/* <!-- Search --> */}
-        <FormSearch windowHandler={() => setWindow(!Window)} />
+        <FormSearch
+          windowHandler={() => setWindow(!Window)}
+          user={auth.id}
+          token={auth.token}
+          sort={sortChatlist}
+        />
         {/* <!-- End Search--> */}
 
         {/* <!-- Sorting Chatlist --> */}
@@ -74,6 +81,9 @@ function Leftside({ userToken }) {
         {/* <!-- MenuMobile --> */}
         {menu && <MenuMobile menuHandler={() => setMenu(!menu)} />}
         {/* <!-- End MenuMobile --> */}
+
+        {/* Profile */}
+        {url.pathname === "/setting" && <Setting />}
 
         {/* Incoming Calls */}
         {/* <IncomingCalls device="mobile" /> */}

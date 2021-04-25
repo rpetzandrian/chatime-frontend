@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, useHistory, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 function SortingChatlist() {
   const url = new URLSearchParams(useLocation().search).get("sort");

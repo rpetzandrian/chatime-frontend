@@ -43,6 +43,12 @@ import addImage from "./icons/Image.svg";
 import addDocument from "./icons/Documents.svg";
 import addLocation from "./icons/Location.svg";
 import makeAllRead from "./icons/Make-all-read.svg";
+import plusFile from "./icons/PlusFile.svg";
+import notifIcon from "./icons/Notif.svg";
+import secretBlack from "./icons/Secret chat black.svg";
+import dataStorage from "./icons/datastorage.svg";
+import ChatBlack from "./icons/ChatBlack.svg";
+import deviceIcon from "./icons/Device.svg";
 import BackgroundCalls from "./icons/BackgroundCalls.svg"; // Not Permanent
 
 export {
@@ -92,4 +98,10 @@ export {
   addLocation,
   chatBlue,
   makeAllRead,
+  plusFile,
+  notifIcon,
+  secretBlack,
+  deviceIcon,
+  ChatBlack,
+  dataStorage,
 };

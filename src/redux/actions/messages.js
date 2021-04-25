@@ -40,13 +40,19 @@ const addMessagesError = (err) => {
   };
 };
 
+const deleteMessageRequest = () => {
+  return {
+    type: "DELETE_MESSAGE_REQUEST",
+  };
+};
+
 const getMessages = (user, token, chatroom_id) => {
   return (dispatch) => {
     dispatch(getMessagesRequest());
     return axios
       .get(`${api.baseUrl}/messages/${user}/${chatroom_id}`, {
         headers: {
-          "user-token": `${token}`,
+          "user-token": `Bearer ${token}`,
         },
       })
       .then((res) => {
@@ -66,7 +72,7 @@ const addMessages = (user, token, message, withdata, cb) => {
     return axios
       .post(`${api.baseUrl}/messages/${user}/${withdata || ""}`, message, {
         headers: {
-          "user-token": `${token}`,
+          "user-token": `Bearer ${token}`,
         },
       })
       .then((res) => {
@@ -81,4 +87,18 @@ const addMessages = (user, token, message, withdata, cb) => {
   };
 };
 
-export { getMessages, addMessages };
+const deleteMessages = (user, token, message, chatroom) => {
+  return (dispatch) => {
+    dispatch(deleteMessageRequest());
+    axios.delete(
+      `${api.baseUrl}/messages/${user}/${message}?chatroom=${chatroom}`,
+      {
+        headers: {
+          "user-token": `Bearer ${token}`,
+        },
+      }
+    );
+  };
+};
+
+export { getMessages, addMessages, deleteMessages };

@@ -11,6 +11,7 @@ import SendStickers from "./SendStickers";
 import SendImages from "./SendImages";
 import MessageAddFile from "./MessageAddfile";
 import ContactInfo from "./ContactInfo";
+import Setting from "./Setting";
 import Loading from "./Loading";
 
 export {
@@ -27,5 +28,6 @@ export {
   MessageAddFile,
   ContactInfo,
   Contact,
+  Setting,
   Loading,
 };

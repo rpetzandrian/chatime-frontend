@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useHistory } from "react-router";
 import Swal from "sweetalert2";
 import { api } from "../../config/api";
 
@@ -59,15 +58,20 @@ const deleteChatlistRequest = () => {
   };
 };
 
-const getChatlist = (userId, sortChatlist, userToken) => {
+const getChatlist = (userId, sortChatlist, userToken, keyword = "") => {
   return (dispatch) => {
     dispatch(getChatlistRequest());
     return axios
-      .get(`${api.baseUrl}/chatrooms/${userId}/${sortChatlist || ""}`, {
-        headers: {
-          "user-token": `${userToken}`,
-        },
-      })
+      .get(
+        `${api.baseUrl}/chatrooms/${userId}/${
+          sortChatlist || ""
+        }?keyword=${keyword}`,
+        {
+          headers: {
+            "user-token": `Bearer ${userToken}`,
+          },
+        }
+      )
       .then((res) => {
         if (res.status === 200) {
           dispatch(getChatlistSuccess(res.data.data));
@@ -88,7 +92,7 @@ const addChatlist = (user, token, friend, friend_name, cb) => {
         { user2: friend },
         {
           headers: {
-            "user-token": `${token}`,
+            "user-token": `Bearer ${token}`,
           },
         }
       )
@@ -125,7 +129,7 @@ const editChatlist = (user, chatroom, userToken) => {
       {},
       {
         headers: {
-          "user-token": `${userToken}`,
+          "user-token": `Bearer ${userToken}`,
         },
       }
     );
@@ -140,7 +144,7 @@ const saveChatlist = (user, chatroom, userToken) => {
       { is_saved: true },
       {
         headers: {
-          "user-token": `${userToken}`,
+          "user-token": `Bearer ${userToken}`,
         },
       }
     );
@@ -153,7 +157,7 @@ const deleteChatlist = (user, chatroom, userToken) => {
     return axios
       .delete(`${api.baseUrl}/chatrooms/${user}/${chatroom}`, {
         headers: {
-          "user-token": `${userToken}`,
+          "user-token": `Bearer ${userToken}`,
         },
       })
       .then((res) => {

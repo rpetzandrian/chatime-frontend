@@ -728,26 +728,34 @@ nav img {
   max-height: 80vh;
 }
 .message .message-block-left {
-  max-width: 420px;
+  max-width: 320px;
   background-color: #2675ec;
   color: #ffffff;
   border-radius: 35px 35px 35px 10px;
 }
 .message .message-block-left .chat-image {
-  max-width: 420px;
+  max-width: 320px;
   max-height: 200px;
   border-radius: 35px 35px 35px 10px;
+  transition: 1s;
+}
+.message .message-block-left .chat-image:active {
+  transform: scale(3) translate(50%);
 }
 .message .message-block-right {
-  max-width: 420px;
+  max-width: 320px;
   background-color: #ffffff;
   color: #131313;
   border-radius: 35px 10px 35px 35px;
 }
 .message .message-block-right .chat-image {
-  max-width: 420px;
+  max-width: 320px;
   max-height: 200px;
   border-radius: 35px 10px 35px 35px;
+  transition: 1s;
+}
+.message .message-block-right .chat-image:active {
+  transform: scale(3) translate(-50%);
 }
 .message::-webkit-scrollbar {
   width: 0;
@@ -799,13 +807,13 @@ nav img {
   border-radius: 35px 35px 35px 10px;
 }
 .message-mobile .message-block-right {
-  max-width: 3000px;
+  max-width: 300px;
   background-color: #ffffff;
   color: #131313;
   border-radius: 35px 10px 35px 35px;
 }
 .message-mobile .message-block-left-video {
-  max-width: 420px;
+  max-width: 300px;
   background-color: #2675ec;
   color: #ffffff;
   border-radius: 50%;
@@ -872,6 +880,9 @@ nav img {
 }
 .send-image .form-send-message .input-message {
   border-radius: 35px;
+}
+.send-image .form-add {
+  width: 100%;
 }
 .send-image p {
   font-size: 22px;

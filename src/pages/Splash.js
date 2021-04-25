@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { logo } from "../assets/images";
 
 function Splash() {
   const history = useHistory();
-  const userToken = localStorage.getItem("token");
+  const { data: auth } = useSelector((s) => s.Auth);
 
   const load = () => {
     setTimeout(() => {
-      if (!userToken) {
+      if (!auth.isLogin) {
         history.replace("/login");
       }
       history.replace("/chat");
@@ -17,7 +18,7 @@ function Splash() {
 
   useEffect(() => {
     load();
-  }, []);
+  });
 
   return (
     <>

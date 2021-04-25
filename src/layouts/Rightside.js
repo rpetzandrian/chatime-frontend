@@ -84,6 +84,7 @@ function Rightside() {
             type={(a) => {
               setType(a);
             }}
+            sendFile={() => setSendfile(!sendfile)}
           />
         )}
       </div>

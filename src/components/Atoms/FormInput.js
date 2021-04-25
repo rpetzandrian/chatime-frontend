@@ -5,6 +5,7 @@ function FormInput(props) {
     <>
       <input
         id={props.id}
+        data-testid={props.id}
         type={props.type}
         name={props.name}
         className="form-control form-custom"

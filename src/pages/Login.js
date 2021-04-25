@@ -1,11 +1,10 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { Login as login } from "../redux/actions/auth";
 import Swal from "sweetalert2";
-import { api } from "../config/api";
 import { AuthLayouts } from "../layouts";
+// import { addForm } from "../redux/actions/exp";
 
 function Login() {
   const dispatch = useDispatch();
@@ -37,28 +36,8 @@ function Login() {
         timer: 1500,
       });
     }
+    // dispatch(addForm(form));
     dispatch(login(form));
-    // axios
-    //   .post(`${api.baseUrl}/auth/login`, form)
-    //   .then((res) => {
-    //     if (res.status === 200) {
-    //       localStorage.setItem("token", res.data.data.token);
-    //       setUserToken(res.data.data.token);
-    //       localStorage.setItem("userID", res.data.data.id);
-    //       setUserId(res.data.data.id);
-    //       history.push("/chat");
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     Swal.fire({
-    //       position: "top",
-    //       icon: "error",
-    //       title: `${err.response.data.message}`,
-    //       showConfirmButton: false,
-    //       toast: true,
-    //       timer: 1500,
-    //     });
-    //   });
   };
 
   const formfill = [

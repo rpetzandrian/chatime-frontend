@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { SendImageHeader, SendList } from "./Atoms";
-import rectangle38 from "../assets/images/Rectangle 38.png";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { api } from "../config/api";
 import { addMessages } from "../redux/actions/messages";
+import { plusFile } from "../assets/images";
 
 function SendImages({ update, type }) {
   const dispatch = useDispatch();
@@ -15,22 +13,22 @@ function SendImages({ update, type }) {
     chatroom_id: message.chatroom_id,
     sender: auth.id,
     text: "",
-    images: [],
+    images: null,
     imagePrev: [],
   });
 
   useEffect(() => {
-    const fileArray = Array.from(form.images).map((e) =>
-      URL.createObjectURL(e)
-    );
+    if (form.images) {
+      const fileArray = Array.from(form.images).map((e) =>
+        URL.createObjectURL(e)
+      );
 
-    setForm({
-      ...form,
-      imagePrev: fileArray,
-    });
+      setForm({
+        ...form,
+        imagePrev: fileArray,
+      });
+    }
   }, [form.images]);
-
-  console.log(form.imagePrev, "ahaa");
 
   useEffect(() => {
     setForm({
@@ -65,10 +63,14 @@ function SendImages({ update, type }) {
 
   const addNewMessage = (e) => {
     e.preventDefault();
-    formDataAppend();
-    dispatch(addMessages(auth.id, auth.token, formData, "images", reset));
-    type("");
-    update();
+    if (form.images) {
+      formDataAppend();
+      dispatch(addMessages(auth.id, auth.token, formData, "images", reset));
+      type("");
+      update();
+    } else {
+      type("");
+    }
   };
 
   return (
@@ -79,8 +81,7 @@ function SendImages({ update, type }) {
         </div>
         <form
           onSubmit={(e) => addNewMessage(e)}
-          className="d-flex h-75 mx-4 form-send-message"
-          encType="multipart/form-data"
+          className="d-flex w-100 h-75 ms-4 me-5 form-send-message"
         >
           <input
             onChange={(e) => {
@@ -89,29 +90,42 @@ function SendImages({ update, type }) {
             }}
             type="text"
             name="text"
-            className="form-control w-75 px-4 mt2-3 input-message"
+            className="form-control w-100 px-4 mt-2 ms-3 me-5 input-message"
             placeholder="Type your message..."
             aria-label="Type your message..."
             value={form.text}
           />
-          <input
-            onChange={(e) => {
-              e.preventDefault();
-              setForm({ ...form, images: e.target.files });
-            }}
-            name="images"
-            className="pt-3 w-25 ms-3 input-file"
-            type="file"
-            files={form.images}
-            multiple
-          />
         </form>
-        <div className="row row-cols-auto w-100 justify-content-center mx-0 mx-md-3 image">
-          {form.imagePrev &&
-            form.imagePrev.map((e, index) => {
-              return <SendList key={index} images={e} none={true} />;
-            })}
-        </div>
+
+        {!form.images && (
+          <form
+            encType="multipart/form-data"
+            className="row row-cols-auto w-100 justify-content-center ms-5 ms-md-5 form-add"
+          >
+            <label className="justify-content-center ms-5 ps-5 mt-3">
+              <img width="100px" className="ms-5 mt-2 icon" src={plusFile} />
+              <input
+                onChange={(e) => {
+                  e.preventDefault();
+                  setForm({ ...form, images: e.target.files });
+                }}
+                name="images"
+                className="pt-3 w-100 ms-3 input-file invisible"
+                type="file"
+                files={form.images}
+                multiple
+              />
+            </label>
+          </form>
+        )}
+        {form.images && (
+          <div className="row row-cols-auto w-100 justify-content-center mx-0 mx-md-3 image">
+            {form.imagePrev &&
+              form.imagePrev.map((e, index) => {
+                return <SendList key={index} images={e} none={true} />;
+              })}
+          </div>
+        )}
       </section>
     </>
   );

@@ -56,7 +56,7 @@ const getContact = (userId, userToken) => {
     return axios
       .get(`${api.baseUrl}/contacts/${userId}`, {
         headers: {
-          "user-token": `${userToken}`,
+          "user-token": `Bearer ${userToken}`,
         },
       })
       .then((res) => {
@@ -79,7 +79,7 @@ const addContact = (user, token, form) => {
         { ...form },
         {
           headers: {
-            "user-token": `${token}`,
+            "user-token": `Bearer ${token}`,
           },
         }
       )
@@ -111,7 +111,7 @@ const editContact = (user, token, friend, name) => {
         },
         {
           headers: {
-            "user-token": `${token}`,
+            "user-token": `Bearer ${token}`,
           },
         }
       )
@@ -126,7 +126,7 @@ const deleteContact = (user, token, friend) => {
     return axios
       .delete(`${api.baseUrl}/contacts/${user}/${friend}`, {
         headers: {
-          "user-token": `${token}`,
+          "user-token": `Bearer ${token}`,
         },
       })
       .then((res) => {

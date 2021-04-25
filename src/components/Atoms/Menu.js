@@ -15,7 +15,12 @@ function Menu(props) {
     <>
       <div className="d-none d-md-block menu">
         <div className="row mt-3">
-          <div className="col-12 d-flex justify-content-start mt-2 ps-5 link">
+          <div
+            className="col-12 d-flex justify-content-start mt-2 ps-5 link"
+            onClick={() => {
+              history.push("/setting");
+            }}
+          >
             <img
               className="icon"
               width="22px"

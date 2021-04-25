@@ -44,6 +44,10 @@ const Messages = (state = initialState, action = {}) => {
         loading: false,
         error: action.payload,
       };
+    case "DELETE_MESSAGE_REQUEST":
+      return {
+        ...state,
+      };
 
     default:
       return state;

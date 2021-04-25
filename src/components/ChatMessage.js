@@ -27,6 +27,7 @@ function ChatMessage(props) {
                     <MessageLeft
                       key={e.id}
                       message={e}
+                      chatroom={props.data.chatroom_id}
                       user1_photo={props.data.user1_photo}
                       user2_photo={props.data.user2_photo}
                     />
@@ -36,6 +37,7 @@ function ChatMessage(props) {
                   <MessageRight
                     key={e.id}
                     message={e}
+                    chatroom={props.data.chatroom_id}
                     user1_photo={props.data.user1_photo}
                     user2_photo={props.data.user2_photo}
                   />
