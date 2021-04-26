@@ -16,6 +16,7 @@ function AuthForm(props) {
       {props.hide && (
         <img
           id="hidden-password"
+          data-testid="hidden-password"
           className="float-end"
           src={hiddenPassword}
           alt="hidden"
