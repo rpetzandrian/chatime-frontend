@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { Login as login } from "../redux/actions/auth";
 import Swal from "sweetalert2";
 import { AuthLayouts } from "../layouts";
+import { Loading } from "../components";
 // import { addForm } from "../redux/actions/exp";
 
 function Login() {
@@ -60,6 +61,8 @@ function Login() {
   ];
   return (
     <>
+      {loading && <Loading />}
+
       {/* <!-- Start Content --> */}
       <main className="container-fluid container-custom overflow-hidden">
         <div className="row justify-content-center align-content-center h-100">

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Register as register } from "../redux/actions/auth";
 import { AuthLayouts } from "../layouts";
+import { Loading } from "../components";
 // import { addForm } from "../redux/actions/exp";
 
 function Register() {
@@ -54,6 +55,8 @@ function Register() {
 
   return (
     <>
+      {loading && <Loading />}
+
       {/* <!-- Start Content --> */}
       <main className="container-fluid container-custom overflow-hidden">
         <div className="row justify-content-center align-content-center h-100">
