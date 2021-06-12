@@ -22,5 +22,5 @@ This project is using :
 
 ## Folder Structure
 
-|-- public
-|-- src
+|--- public
+|--- src
