@@ -20,7 +20,13 @@ This project is using :
 3. Bootstraps
 4. Sass
 
-## Folder Structure
+## Screenshoot
 
-|--- public
-|--- src
+| Desktop  | Mobile |
+| - | - |
+|> **Login Page**|
+| ![Desktop](https://user-images.githubusercontent.com/74188254/121764221-93b5be00-cb6c-11eb-9876-ecf10b44b3cc.png)  | ![Mopbile](https://user-images.githubusercontent.com/74188254/121764233-a9c37e80-cb6c-11eb-881b-f4c3ba6d75d9.png) |
+|> **Chatlist Page**|
+| ![Desktop](https://user-images.githubusercontent.com/74188254/121764255-d4add280-cb6c-11eb-9bea-df7477ede9e3.png)  | ![Mobile](https://user-images.githubusercontent.com/74188254/121764262-e2635800-cb6c-11eb-8ab0-3c8f27967bb9.png) |
+|> **Message Page**|
+| ![Message](https://user-images.githubusercontent.com/74188254/121764319-30785b80-cb6d-11eb-9459-a431f724ad8a.png)  | ![Message-mobile](https://user-images.githubusercontent.com/74188254/121764323-39692d00-cb6d-11eb-9d5f-1c7e76ec19b5.png) |
