@@ -76,10 +76,8 @@ const addMessages = (user, token, message, withdata, cb) => {
         },
       })
       .then((res) => {
-        if (res.status === 201) {
-          dispatch(addMessagesSuccess());
-          cb({ ...message, text: "" });
-        }
+        dispatch(addMessagesSuccess());
+        cb({ ...message, text: "" });
       })
       .catch((err) => {
         dispatch(addMessagesError(err.response));

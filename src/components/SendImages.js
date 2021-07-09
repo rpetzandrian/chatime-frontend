@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { SendImageHeader, SendList } from "./Atoms";
 import { useDispatch, useSelector } from "react-redux";
-import { addMessages } from "../redux/actions/messages";
+import { addMessages, getMessages } from "../redux/actions/messages";
 import { plusFile } from "../assets/images";
+import { useParams } from "react-router";
 
 function SendImages({ update, type }) {
   const dispatch = useDispatch();
+  const { slug } = useParams();
   const { data: auth } = useSelector((s) => s.Auth);
   const { data: message } = useSelector((s) => s.Messages);
+  const chatroom_id = slug ? slug.split("-")[slug.split("-").length - 1] : null;
   const formData = new FormData();
   const [form, setForm] = useState({
     chatroom_id: message.chatroom_id,
@@ -66,8 +69,9 @@ function SendImages({ update, type }) {
     if (form.images) {
       formDataAppend();
       dispatch(addMessages(auth.id, auth.token, formData, "images", reset));
+      dispatch(getMessages(auth.id, auth.token, chatroom_id));
+      update()
       type("");
-      update();
     } else {
       type("");
     }
