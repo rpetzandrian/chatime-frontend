@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { emote, plusIcon, rectangle } from "../../assets/images";
 import { api } from "../../config/api";
+import { socket } from "../../libs/socket";
 import { addMessages } from "../../redux/actions/messages";
 
 function ChatMessageFooter({ chatroom_id, update, sendfile }) {
@@ -22,8 +23,10 @@ function ChatMessageFooter({ chatroom_id, update, sendfile }) {
     e.preventDefault();
     if (message.text !== "") {
       dispatch(addMessages(auth.id, auth.token, message, null, setMessage));
-      update();
+      // update();
     }
+
+    socket.emit("send message", message);
   };
 
   return (

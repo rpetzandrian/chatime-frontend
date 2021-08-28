@@ -36,7 +36,7 @@ function Leftside({ userToken }) {
 
   return (
     <>
-      {loading && <Loading />}
+      {/* {loading && <Loading />} */}
 
       <div
         className={

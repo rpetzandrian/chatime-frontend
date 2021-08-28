@@ -12,6 +12,7 @@ import {
   SendStickers,
 } from "../components";
 import { IncomingCalls, ChatMessageMenu } from "../components/Atoms";
+import { socket } from "../libs/socket";
 import { getMessages } from "../redux/actions/messages";
 
 function Rightside() {
@@ -19,23 +20,31 @@ function Rightside() {
   const url = useLocation();
   const { slug } = useParams();
   const chatroom_id = slug ? slug.split("-")[slug.split("-").length - 1] : null;
-  const [update, setUpdate] = useState(true);
+  // const [update, setUpdate] = useState(true);
   const [type, setType] = useState("");
   const [sendfile, setSendfile] = useState(false);
   const { data: messages, error, loading } = useSelector((s) => s.Messages);
   const { data: auth } = useSelector((s) => s.Auth);
+  const [msg, setMsg] = useState(messages.messages)
 
   useEffect(() => {
     if (chatroom_id === null) {
       return;
     }
 
+    socket.emit('join', { userId: auth.id, roomId: chatroom_id })
     dispatch(getMessages(auth.id, auth.token, chatroom_id));
-  }, [chatroom_id, update]);
+  }, [chatroom_id]);
 
+  useEffect(() => {
+    socket.on('message', message => {
+      setMsg([...msg, message])
+      console.log(msg)
+    })
+  }, [])
   return (
     <>
-      {loading && <Loading />}
+      {/* {loading && <Loading />} */}
 
       <div
         className={
@@ -54,7 +63,8 @@ function Rightside() {
           (messages !== null && (
             <ChatMessage
               data={messages}
-              update={() => setUpdate(!update)}
+              message={msg}
+              // update={() => setUpdate(!update)}
               sendfile={() => setSendfile(!sendfile)}
             />
           ))}
@@ -67,7 +77,7 @@ function Rightside() {
         {/* <SendStickers /> */}
         {type === "images" && (
           <SendImages
-            update={() => setUpdate(!update)}
+            // update={() => setUpdate(!update)}
             type={(a) => setType(a)}
           />
         )}

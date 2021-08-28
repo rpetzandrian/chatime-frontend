@@ -70,7 +70,7 @@ function SendImages({ update, type }) {
       formDataAppend();
       dispatch(addMessages(auth.id, auth.token, formData, "images", reset));
       dispatch(getMessages(auth.id, auth.token, chatroom_id));
-      update()
+      update();
       type("");
     } else {
       type("");
