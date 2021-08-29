@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { backButton, profileMenu } from "../../assets/images";
+import { api } from "../../config/api";
 
 function ChatMessageHeader(props) {
   const url = useLocation();
@@ -22,7 +23,7 @@ function ChatMessageHeader(props) {
                 src={
                   props.data.user2_photo === null
                     ? "https://via.placeholder.com/150"
-                    : `http://localhost:8000/${props.data.user2_photo}`
+                    : `${api.imgUrl}/${props.data.user2_photo}`
                 }
                 alt="partner profile"
               />
