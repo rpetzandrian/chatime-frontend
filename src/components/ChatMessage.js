@@ -27,10 +27,10 @@ function ChatMessage({ message, chatroom, ...props }) {
 
   socket.on("message", (data) => {
     setMsg([...msg, data]);
-    dispatch(getMessages(auth.id, auth.token, chatroom.chatroom_id));
   });
 
   useEffect(() => {
+    dispatch(getMessages(auth.id, auth.token, chatroom.chatroom_id));
     divRef.current.scrollIntoView();
   }, [msg]);
 
