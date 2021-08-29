@@ -21,6 +21,26 @@ const getMessagesError = (err) => {
   };
 };
 
+const getChatroomInfoRequest = () => {
+  return {
+    type: "CHATROOM_REQUEST",
+  };
+};
+
+const getChatroomInfoSuccess = (data) => {
+  return {
+    type: "CHATROOM_SUCCESS",
+    payload: data,
+  };
+};
+
+const getChatroomInfoError = (err) => {
+  return {
+    type: "CHATROOM_ERROR",
+    payload: err,
+  };
+};
+
 const addMessagesRequest = () => {
   return {
     type: "ADD_MESSAGE_REQUEST",
@@ -66,6 +86,26 @@ const getMessages = (user, token, chatroom_id) => {
   };
 };
 
+const getChatroomInfo = (user, token, chatroom_id) => {
+  return (dispatch) => {
+    dispatch(getChatroomInfoRequest());
+    return axios
+      .get(`${api.baseUrl}/chatrooms/${user}?chatroom_id=${chatroom_id}`, {
+        headers: {
+          "user-token": `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch(getChatroomInfoSuccess(res.data.data));
+        }
+      })
+      .catch((err) => {
+        dispatch(getChatroomInfoError(err.response));
+      });
+  };
+};
+
 const addMessages = (user, token, message, withdata, cb) => {
   return (dispatch) => {
     dispatch(addMessagesRequest());
@@ -99,4 +139,4 @@ const deleteMessages = (user, token, message, chatroom) => {
   };
 };
 
-export { getMessages, addMessages, deleteMessages };
+export { getMessages, addMessages, deleteMessages, getChatroomInfo };

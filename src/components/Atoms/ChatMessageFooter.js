@@ -24,9 +24,8 @@ function ChatMessageFooter({ chatroom_id, update, sendfile }) {
     if (message.text !== "") {
       dispatch(addMessages(auth.id, auth.token, message, null, setMessage));
       // update();
+      socket.emit("send message", message);
     }
-
-    socket.emit("send message", message);
   };
 
   return (

@@ -739,9 +739,6 @@ nav img {
   border-radius: 35px 35px 35px 10px;
   transition: 1s;
 }
-.message .message-block-left .chat-image:active {
-  transform: scale(3) translate(50%);
-}
 .message .message-block-right {
   max-width: 320px;
   background-color: #ffffff;
@@ -753,9 +750,6 @@ nav img {
   max-height: 200px;
   border-radius: 35px 10px 35px 35px;
   transition: 1s;
-}
-.message .message-block-right .chat-image:active {
-  transform: scale(3) translate(-50%);
 }
 .message::-webkit-scrollbar {
   width: 0;

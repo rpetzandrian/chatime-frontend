@@ -4,16 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { addMessages, getMessages } from "../redux/actions/messages";
 import { plusFile } from "../assets/images";
 import { useParams } from "react-router";
+import { socket } from "../libs/socket";
 
 function SendImages({ update, type }) {
   const dispatch = useDispatch();
   const { slug } = useParams();
   const { data: auth } = useSelector((s) => s.Auth);
   const { data: message } = useSelector((s) => s.Messages);
+  const { data: chatroom } = useSelector((s) => s.Chatroom);
   const chatroom_id = slug ? slug.split("-")[slug.split("-").length - 1] : null;
   const formData = new FormData();
   const [form, setForm] = useState({
-    chatroom_id: message.chatroom_id,
+    chatroom_id: chatroom.chatroom_id,
     sender: auth.id,
     text: "",
     images: null,
@@ -36,7 +38,7 @@ function SendImages({ update, type }) {
   useEffect(() => {
     setForm({
       ...form,
-      chatroom_id: message.chatroom_id,
+      chatroom_id: chatroom.chatroom_id,
     });
   }, [message.chatroom_id]);
 
@@ -56,7 +58,7 @@ function SendImages({ update, type }) {
     formData.delete("chatroom_id");
 
     setForm({
-      chatroom_id: message.chatroom_id,
+      chatroom_id: chatroom.chatroom_id,
       sender: auth.id,
       text: "",
       images: [],
@@ -68,10 +70,11 @@ function SendImages({ update, type }) {
     e.preventDefault();
     if (form.images) {
       formDataAppend();
+      // socket.emit("send message", formData);
+      console.log(formData, "DATAAAAAAAAAAAAA");
       dispatch(addMessages(auth.id, auth.token, formData, "images", reset));
       dispatch(getMessages(auth.id, auth.token, chatroom_id));
-      update();
-      type("");
+      // update();
     } else {
       type("");
     }
@@ -81,10 +84,18 @@ function SendImages({ update, type }) {
     <>
       <section className="send-image">
         <div className="w-100 row justify-content-between align-items-center pt-1 mx-3 sticky-top send">
-          <SendImageHeader send={(e) => addNewMessage(e)} />
+          <SendImageHeader
+            send={(e) => {
+              addNewMessage(e);
+              type("");
+            }}
+          />
         </div>
         <form
-          onSubmit={(e) => addNewMessage(e)}
+          onSubmit={(e) => {
+            addNewMessage(e);
+            type("");
+          }}
           className="d-flex w-100 h-75 ms-4 me-5 form-send-message"
         >
           <input

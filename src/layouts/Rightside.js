@@ -13,7 +13,7 @@ import {
 } from "../components";
 import { IncomingCalls, ChatMessageMenu } from "../components/Atoms";
 import { socket } from "../libs/socket";
-import { getMessages } from "../redux/actions/messages";
+import { getChatroomInfo, getMessages } from "../redux/actions/messages";
 
 function Rightside() {
   const dispatch = useDispatch();
@@ -24,24 +24,32 @@ function Rightside() {
   const [type, setType] = useState("");
   const [sendfile, setSendfile] = useState(false);
   const { data: messages, error, loading } = useSelector((s) => s.Messages);
+  const {
+    data: chatroom,
+    error: errChatroom,
+    loading: loadingChatroom,
+  } = useSelector((s) => s.Chatroom);
   const { data: auth } = useSelector((s) => s.Auth);
-  const [msg, setMsg] = useState(messages.messages)
+  const [msg, setMsg] = useState(messages);
 
   useEffect(() => {
     if (chatroom_id === null) {
       return;
     }
 
-    socket.emit('join', { userId: auth.id, roomId: chatroom_id })
+    socket.emit("join", { userId: auth.id, roomId: chatroom_id });
     dispatch(getMessages(auth.id, auth.token, chatroom_id));
+    dispatch(getChatroomInfo(auth.id, auth.token, chatroom_id));
   }, [chatroom_id]);
 
-  useEffect(() => {
-    socket.on('message', message => {
-      setMsg([...msg, message])
-      console.log(msg)
-    })
-  }, [])
+  socket.on("message", (data) => {
+    setMsg([...msg, data]);
+  });
+
+  // useEffect(() => {
+  //   dispatch(getMessages(auth.id, auth.token, chatroom_id));
+  // }, [msg]);
+
   return (
     <>
       {/* {loading && <Loading />} */}
@@ -62,8 +70,9 @@ function Rightside() {
         )) ||
           (messages !== null && (
             <ChatMessage
-              data={messages}
-              message={msg}
+              data={msg}
+              chatroom={chatroom}
+              message={messages}
               // update={() => setUpdate(!update)}
               sendfile={() => setSendfile(!sendfile)}
             />

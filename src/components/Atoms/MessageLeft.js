@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-import photo from "../../assets/images/Rectangle 8-1.png";
-import image from "../../assets/images/cars.png";
+// import photo from "../../assets/images/Rectangle 8-1.png";
+// import image from "../../assets/images/cars.png";
 import { api } from "../../config/api";
 import { trashBlue } from "../../assets/images";
-import { useDispatch, useSelector } from "react-redux";
-import { deleteMessages } from "../../redux/actions/messages";
+// import { useDispatch, useSelector } from "react-redux";
+// import { deleteMessages } from "../../redux/actions/messages";
 
-function MessageLeft(props) {
-  const dispatch = useDispatch();
-  const { data: auth } = useSelector((s) => s.Auth);
-  const [del, setDel] = useState(false);
-  const [showTime, setShowTime] = useState(false);
+function MessageLeft({ auth, del, setDel, deleteHandler, ...props }) {
+  // const dispatch = useDispatch();
+  // const { data: auth } = useSelector((s) => s.Auth);
+  // const [showTime, setShowTime] = useState(false);
 
-  const deleteHandler = (message, chatroom) => {
-    setDel(false);
-    dispatch(deleteMessages(auth.id, auth.token, message, chatroom));
-  };
+  // const [del, setDel] = useState(false);
+  // const deleteHandler = (message, chatroom) => {
+  //   setDel(false);
+  //   dispatch(deleteMessages(auth.id, auth.token, message, chatroom));
+  // };
 
   return (
     <>

@@ -28,7 +28,7 @@ function ChatMessageHeader(props) {
               />
               <div className="chat-partner-desc pt-3 ms-4">
                 <h5 className="name-partner">
-                  {props.data.user2_name || props.data.user2_phone}
+                  {props.data.friend_name || props.data.phone}
                 </h5>
                 <p className="text-blue">
                   {props.data.is_online ? "Online" : "Offline"}

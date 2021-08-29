@@ -54,4 +54,32 @@ const Messages = (state = initialState, action = {}) => {
   }
 };
 
-export { Messages };
+const Chatroom = (state = initialState, action = {}) => {
+  switch (action.type) {
+    case "CHATROOM_REQUEST":
+      return {
+        ...state,
+        error: null,
+        loading: true,
+      };
+    case "CHATROOM_SUCCESS":
+      return {
+        ...state,
+        data: action.payload,
+        error: null,
+        loading: false,
+      };
+    case "CHATROOM_ERROR":
+      return {
+        ...state,
+        data: [],
+        error: action.payload,
+        loading: true,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export { Messages, Chatroom };

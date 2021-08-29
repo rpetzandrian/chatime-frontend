@@ -4,16 +4,16 @@ import { trashBlue } from "../../assets/images";
 import { api } from "../../config/api";
 import { deleteMessages } from "../../redux/actions/messages";
 
-function MessageRight(props) {
-  const dispatch = useDispatch();
-  const { data: auth } = useSelector((s) => s.Auth);
-  const [del, setDel] = useState(false);
-  const [showTime, setShowTime] = useState(false);
+function MessageRight({ auth, del, setDel, deleteHandler, ...props }) {
+  // const dispatch = useDispatch();
+  // const { data: auth } = useSelector((s) => s.Auth);
+  // const [del, setDel] = useState(false);
+  // const [showTime, setShowTime] = useState(false);
 
-  const deleteHandler = (message, chatroom) => {
-    setDel(false);
-    dispatch(deleteMessages(auth.id, auth.token, message, chatroom));
-  };
+  // const deleteHandler = (message, chatroom) => {
+  //   setDel(false);
+  //   dispatch(deleteMessages(auth.id, auth.token, message, chatroom));
+  // };
 
   return (
     <>
