@@ -42,9 +42,9 @@ function Rightside() {
     dispatch(getChatroomInfo(auth.id, auth.token, chatroom_id));
   }, [chatroom_id]);
 
-  socket.on("message", (data) => {
-    setMsg([...msg, data]);
-  });
+  // socket.on("message", (data) => {
+  //   setMsg([...msg, data]);
+  // });
 
   // useEffect(() => {
   //   dispatch(getMessages(auth.id, auth.token, chatroom_id));
