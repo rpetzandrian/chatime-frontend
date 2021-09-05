@@ -1,6 +1,22 @@
-## Chatime
+<h1  align="center">Chatime App</h1>
 
-Chatime is a realtime chat application. This is a frontend part for [Chatime-Server](https://github.com/rpetzandrian/chatime-server).
+
+<p  align="center">Stay connected with your friends via <strong>Chatime</strong>
+</p>
+
+
+<p  align="center"> 
+    <a  href="https://github.com/rpetzandrian/chatime-frontend">
+        <img  src="https://img.shields.io/badge/-Open%20Source-blue"  alt="Chatime is released Open Source"  />
+    </a>
+</p>
+
+![Chatime](https://user-images.githubusercontent.com/74188254/132128091-1e2ea3c3-bead-4136-ad18-fb39b7bf7421.png)
+
+
+## Intermezzo
+
+Chatime is a realtime chat application. User can send message, image, voice, and video. This is a frontend part for [Chatime-Server](https://github.com/rpetzandrian/chatime-server).
 
 ## Getting started
 
@@ -19,6 +35,7 @@ This project is using :
 2. Redux + Axios
 3. Bootstraps
 4. Sass
+5. Socket IO
 
 ## Screenshoot
 
